@@ -1,11 +1,5 @@
 import * as z from "zod";
-
-export const DisplayPropertiesSchema = z.object({
-    "description": z.string(),
-    "name": z.string(),
-    "icon": z.string(),
-});
-export type DisplayProperties = z.infer<typeof DisplayPropertiesSchema>;
+import { DisplayPropertiesSchema } from "./commonSchemas";
 
 export const EquippingBlockSchema = z.object({
     "ammoType": z.number(),
@@ -49,7 +43,7 @@ export const StatsSchema = z.object({
 });
 export type Stats = z.infer<typeof StatsSchema>;
 
-export const WeaponCoreInfoSchema = z.object({
+export const WeaponCoreInfoWithoutIdSchema = z.object({
     "displayProperties": DisplayPropertiesSchema,
     "iconWatermark": z.string(),
     "screenshot": z.string(),
@@ -59,7 +53,14 @@ export const WeaponCoreInfoSchema = z.object({
     "equippingBlock": EquippingBlockSchema,
     "sockets": SocketsSchema,
     "itemCategoryHashes": z.array(z.number()),
-    "defaultDamageType": z.number(),
+    "defaultDamageTypeHash": z.number(),
 });
 
+export type WeaponCoreInfoWithoutId = z.infer<typeof WeaponCoreInfoWithoutIdSchema>;
+
+export const WeaponCoreInfoSchema = WeaponCoreInfoWithoutIdSchema.extend({
+    hash: z.number(),
+  });
+  
 export type WeaponCoreInfo = z.infer<typeof WeaponCoreInfoSchema>;
+  

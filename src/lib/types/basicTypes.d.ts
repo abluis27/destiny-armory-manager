@@ -1,15 +1,15 @@
-type DestinyInventoryItemDefitionWeapon = {
+type DestinyDefinition = {
     id: number
     json: string
 }
 
-type AmmoType = {
+type WeaponBasicData = {
     id: number
     name: string
+}
+
+type WeaponBasicDataWithIcon = WeaponBasicData & {
     icon: string
 }
 
-type WeaponType = {
-    id: number
-    name: string
-}
+

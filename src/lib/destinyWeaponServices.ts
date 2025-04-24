@@ -1,7 +1,11 @@
-import { fetchWeaponAmmoTypeById, fetchWeaponCoreInfoById, fetchWeaponCoreInfoByName, fetchWeaponDamageTypeById, fetchWeaponRarityById, fetchWeaponStatInfoById, fetchWeaponTypeById } from "./dataFetching";
-import { WeaponCoreInfo, WeaponCoreInfoWithoutIdSchema } from "./types/zodSchemas/weaponCoreInfo";
-import { WeaponDamageTypeSchema } from "./types/zodSchemas/weaponDamageType";
+import { fetchWeaponAmmoTypeById, fetchWeaponCoreInfoById, fetchWeaponCoreInfoByName, fetchWeaponDamageTypeById, fetchWeaponPerkInfoById, fetchWeaponPerkPooHasheslById, fetchWeaponRarityById, fetchWeaponStatInfoById, fetchWeaponTypeById } from "./dataFetching";
+import { SocketEntry, Sockets, WeaponCoreInfo, WeaponCoreInfoWithoutIdSchema } from "./types/zodSchemas/weaponCoreInfo";
+import { WeaponDamageType, WeaponDamageTypeSchema } from "./types/zodSchemas/weaponDamageType";
+import { WeaponPerkInfo, WeaponPerkInfoSchema } from "./types/zodSchemas/weaponPerkInfo";
+import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "./types/zodSchemas/weaponPlugSet";
 import { WeaponPreviewInfo } from "./types/zodSchemas/weaponPreviewInfo";
+import { WeaponStatInfo, WeaponStatInfoSchema } from "./types/zodSchemas/weaponStatInfo";
+import { toSignedInt32 } from "./utils";
 
 export const getWeaponsCoreInfoByName = async (weaponName: string): Promise<WeaponCoreInfo[]> => {
     const resultsFetching = await fetchWeaponCoreInfoByName(weaponName)
@@ -17,11 +21,11 @@ export const getWeaponCoreInfoById = async (weaponId: number): Promise<WeaponCor
 }
 
 const parseDestinyDefitionToWeaponCoreInfo = (destinyDefinition: DestinyDefinition): WeaponCoreInfo => {
-    const weaponInfo = JSON.parse(destinyDefinition.json)
-    const weaponInfoParsed = WeaponCoreInfoWithoutIdSchema.parse(weaponInfo)
+    const weaponCoreInfo = JSON.parse(destinyDefinition.json)
+    const weaponCoreInfoParsed = WeaponCoreInfoWithoutIdSchema.parse(weaponCoreInfo)
     return {
         hash: destinyDefinition.id,
-        ...weaponInfoParsed
+        ...weaponCoreInfoParsed
     }
 }
 
@@ -57,24 +61,71 @@ export const getWeaponAmmoTypeById = async (ammoTypeId: number): Promise<WeaponB
     return resultFetching
 }
 
-// Element
-export const getWeaponDamageTypeById = async (damageTypeId: number) => {
+export const getWeaponDamageTypeById = async (damageTypeId: number): Promise<WeaponDamageType> => {
     const resultFetching = await fetchWeaponDamageTypeById(damageTypeId)
     const weaponDamageType = JSON.parse(resultFetching.json)
     return WeaponDamageTypeSchema.parse(weaponDamageType)
 }
 
-// Rarity
-export const getWeaponRarityById = async (rarityId: number) => {
+export const getWeaponRarityById = async (rarityId: number): Promise<WeaponBasicData> => {
     const resultFetching = await fetchWeaponRarityById(rarityId)
     return resultFetching
 }
 
-// TODO: Add to the database the DestinyStatGroupDefinition
-// And to WeaponCoreInfo statGroupHash en stats
-// Main idea: build a functiion that we pass the stats.stast and the statGroupHash
-// And we get the stats with the correct names and values.
+export const getWeaponStatInfoById = async (statId: number): Promise<WeaponStatInfo> => {
+    const resultFetching = await fetchWeaponStatInfoById(statId)
+    const statInfoParsed = JSON.parse(resultFetching.json)
+    return WeaponStatInfoSchema.parse(statInfoParsed)
+}
+
+// TODO
+export const getWeaponPerkPoolsInfo = async (sockets: Sockets) => {
+    const weaponPerkPool = await mapWeaponPerkPoolByHash(sockets)
+    console.log(weaponPerkPool)
+}
 
 
-// Sockets
-// Single perk info
+// Asignar a cada PerkPoolHash su corresponsiente PerkPool
+export const mapWeaponPerkPoolByHash = async (sockets: Sockets) => {
+    const weaponPerkPoolsHashes = getWeaponPerkPoolsHashes(sockets)
+    const weaponPerkPool = await Promise.all(
+        weaponPerkPoolsHashes.map(perkPool => {
+            if (perkPool.randomizedPlugSetHash !== undefined) {
+                return getWeaponPerkPoolById(
+                   toSignedInt32(perkPool.randomizedPlugSetHash)
+                )
+            } if(perkPool.reusablePlugSetHash !== undefined) {
+                return getWeaponPerkPoolById(
+                    toSignedInt32(perkPool.reusablePlugSetHash)
+                )
+            }
+            return undefined
+        })
+    )
+    return weaponPerkPool
+}
+
+// Base on the indexes we can filter the perk pools that we want to get
+// 0 -> Intrinsic perk
+// 1 -> Index of the perk pools that we want
+const getWeaponPerkPoolsHashes = (sockets: Sockets): SocketEntry[] => {
+    const perkPoolsIndexes = [0, ...sockets.socketCategories[1].socketIndexes]
+    return filterPerkPoolsByIndex(perkPoolsIndexes, sockets.socketEntries)
+}
+const filterPerkPoolsByIndex = (indexes: number[], unfilteredPerkPool: SocketEntry[]) => (
+    indexes.map(index => (unfilteredPerkPool[index]))
+)
+
+export const getWeaponPerkPoolById = async (perkPoolId: number): Promise<WeaponPerkPoolHashes> => {
+    const resultFetching = await fetchWeaponPerkPooHasheslById(perkPoolId)
+    const unparsedPlugSet = JSON.parse(resultFetching.json)
+    return WeaponPerkPoolHashesSchema.parse(unparsedPlugSet)
+}
+
+export const getWeaponPerkInfoById = async (perkId: number): Promise<WeaponPerkInfo> => {
+    const resultFetching = await fetchWeaponPerkInfoById(perkId)
+    const unparsedPerkInfo = JSON.parse(resultFetching.json)
+    return WeaponPerkInfoSchema.parse(unparsedPerkInfo)
+}
+
+

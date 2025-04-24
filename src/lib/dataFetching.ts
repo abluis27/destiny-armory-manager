@@ -44,7 +44,7 @@ export const fetchWeaponStatInfoById = async (statId: number): Promise<DestinyDe
       ) 
 )
 
-export const fetchWeaponPerkPoolById = async (perkPoolId: number): Promise<DestinyDefinition> => (
+export const fetchWeaponPerkPooHasheslById = async (perkPoolId: number): Promise<DestinyDefinition> => (
     db.get(
         sql`SELECT * FROM DestinyPlugSetDefinition
           WHERE id = ${perkPoolId}`
@@ -64,14 +64,6 @@ export const fetchWeaponDamageTypeById = async (damageTypeId: number): Promise<D
           WHERE id = ${damageTypeId}`
       ) 
 )
-
-export const fetchWeaponStatGroupById = async (statGroupId: number): Promise<DestinyDefinition> => (
-    db.get(
-        sql`SELECT * FROM DestinyStatGroupDefinition
-          WHERE id = ${statGroupId}`
-      ) 
-)
-
 
 
 

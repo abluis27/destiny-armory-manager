@@ -41,7 +41,6 @@ export const SocketsSchema = z.object({
 export type Sockets = z.infer<typeof SocketsSchema>;
 
 export const StatsSchema = z.object({
-    "statGroupHash": z.number(),
     "stats": z.record(z.string(), StatSchema),
 });
 export type Stats = z.infer<typeof StatsSchema>;

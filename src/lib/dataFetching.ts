@@ -65,6 +65,14 @@ export const fetchWeaponDamageTypeById = async (damageTypeId: number): Promise<D
       ) 
 )
 
+export const fetchWeaponStatGroupById = async (statGroupId: number): Promise<DestinyDefinition> => (
+    db.get(
+        sql`SELECT * FROM DestinyStatGroupDefinition
+          WHERE id = ${statGroupId}`
+      ) 
+)
+
+
 
 
 

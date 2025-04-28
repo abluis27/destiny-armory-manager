@@ -10,6 +10,7 @@ export type DisplayProperties = z.infer<typeof DisplayPropertiesSchema>;
 
 export const ResponseSchema = z.object({
     "displayProperties": DisplayPropertiesSchema,
+    "itemTypeDisplayName": z.string(),
     "hash": z.number(),
 });
 export type Response = z.infer<typeof ResponseSchema>;

@@ -66,6 +66,7 @@ const getWeaponPerkPoolById = async (perkPoolId: number): Promise<WeaponPerkPool
     return WeaponPerkPoolHashesSchema.parse(unparsedPlugSet)
 }
 
+// Unused until fixing perk db
 const getWeaponPerkInfoById = async (perkId: number): Promise<WeaponPerkInfo> => {
     const resultFetching = await fetchWeaponPerkInfoById(perkId)
     const unparsedPerkInfo = JSON.parse(resultFetching.json)

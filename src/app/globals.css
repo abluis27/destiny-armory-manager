@@ -6,7 +6,7 @@
   --color-dark: #343A40;
   --color-medium-dark: #495057;
   --color-medium: #6C757D;
-  --color-light-medium: #ADB5BD;
+  --color-light-medium: #9ca5ad;
   --color-light: #CED4DA;
   --color-lighter: #DEE2E6;
   --color-lights: #E9ECEF;
@@ -27,7 +27,7 @@
 }
 
 body {
-  background-color: var(--color-darkest);
+  /* background-color: var(--color-darkest);*/
   color: var(--color-off-white)
 }
 

@@ -1,7 +1,7 @@
 import { fetchWeaponPerkInfoById, fetchWeaponPerkPooHasheslById } from "../dataFetching"
-import { SocketEntry, Sockets } from "../types/zodSchemasForDatabase/weaponCoreInfo"
-import { WeaponPerkInfo, WeaponPerkInfoSchema } from "../types/zodSchemasForDatabase/weaponPerkInfo"
-import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "../types/zodSchemasForDatabase/weaponPlugSet"
+import { SocketEntry, Sockets } from "../../app/types/zodSchemasForDatabase/weaponCoreInfo"
+import { WeaponPerkInfo, WeaponPerkInfoSchema } from "../../app/types/zodSchemasForDatabase/weaponPerkInfo"
+import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "../../app/types/zodSchemasForDatabase/weaponPlugSet"
 import { toSignedInt32 } from "../utils"
 import { fetchWeaponPerkInfoFromApiById } from "./bungieApi/destinyInventoryDefinitionItem"
 

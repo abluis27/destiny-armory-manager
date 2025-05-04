@@ -1,4 +1,6 @@
 export default async function Home() {
+  let savedWeapons = []
+
   return (
     // For testing porpuses
     <div>
@@ -10,9 +12,15 @@ export default async function Home() {
       <div>
         <p className="py-4 px-3 text-xl">Weapon List</p>
       </div>
-      <div className="w-full h-screen flex justify-center items-center">
-        <p>I am the main page</p>
-      </div>
+      {
+        savedWeapons.length != 0 ? (
+          <p>Balls</p>
+        ) : (
+        <div className="w-full h-screen flex justify-center items-center">
+          <p>No weapons added yet.</p>
+        </div>
+        )
+      }
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import SearchModal from './searchModal';
+import Link from 'next/link';
 
 const Header = () => {
   const [isSearchModelOpen, setIsSearchModelOpen] = useState(false)
@@ -13,12 +14,14 @@ const Header = () => {
       {/* Icon + Title */}
       <div className="col-span-3
       flex items-center gap-4">
-        <Image
-          src="/icons/destiny-icon-white.svg"
-          alt="Icon of the page"
-          width={32}
-          height={32}
-        />
+        <Link href="/">
+          <Image
+            src="/icons/destiny-icon-white.svg"
+            alt="Icon of the page"
+            width={32}
+            height={32}
+          />
+        </Link>
         <p className="text-xl hidden lg:block">DAM</p>
       </div>
 

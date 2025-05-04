@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
-import { DestinyDefinition, WeaponBasicData, WeaponBasicDataWithIcon } from "./types/basicTypes";
+import { DestinyDefinition, WeaponBasicData, WeaponBasicDataWithIcon } from "../app/types/basicTypes";
 
 export const fetchWeaponCoreInfoByName = async (weaponName: string): Promise<DestinyDefinition[]> => (
     db.all(

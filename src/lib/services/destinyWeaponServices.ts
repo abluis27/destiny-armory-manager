@@ -1,8 +1,8 @@
 import { fetchWeaponCoreInfoById, fetchWeaponCoreInfoByName } from "../dataFetching";
-import { DestinyDefinition } from "../types/basicTypes";
-import { DestinyWeaponData } from "../types/destinyWeaponData";
-import { WeaponCoreInfo, WeaponCoreInfoWithoutIdSchema } from "../types/zodSchemasForDatabase/weaponCoreInfo";
-import { WeaponPreviewInfo } from "../types/zodSchemasForDatabase/weaponPreviewInfo";
+import { DestinyDefinition } from "../../app/types/basicTypes";
+import { DestinyWeaponData } from "../../app/types/destinyWeaponData";
+import { WeaponCoreInfo, WeaponCoreInfoWithoutIdSchema } from "../../app/types/zodSchemasForDatabase/weaponCoreInfo";
+import { WeaponPreviewInfo } from "../../app/types/zodSchemasForDatabase/weaponPreviewInfo";
 import { toSignedInt32 } from "../utils";
 import { getWeaponAmmoTypeById, getWeaponDamageTypeById, getWeaponRarityById, getWeaponTypeById } from "./weaponDetailsServices";
 import { getWeaponPerkPoolsInfoFromSockets } from "./weaponPerkPoolServices";
@@ -38,7 +38,8 @@ export const getDestinyWeaponsPreviewDataByName = async (weaponName: string): Pr
             return {
                 hash: weapon.hash,
                 displayProperties: weapon.displayProperties,
-                weaponType: weaponType
+                weaponType: weaponType,
+                iconWatermark: weapon.iconWatermark
             }
         })
     )

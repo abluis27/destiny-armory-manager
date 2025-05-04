@@ -11,5 +11,6 @@ export const WeaponPreviewInfoSchema = z.object({
     "hash": z.number(),
     "displayProperties": DisplayPropertiesSchema,
     "weaponType": WeaponTypeSchema,
+    "iconWatermark": z.string(),
 });
 export type WeaponPreviewInfo = z.infer<typeof WeaponPreviewInfoSchema>;

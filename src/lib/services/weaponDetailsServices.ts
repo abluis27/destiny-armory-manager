@@ -1,6 +1,7 @@
+import { WeaponBasicData, WeaponBasicDataWithIcon } from "@/app/types/basicTypes";
+import { WeaponDamageType, WeaponDamageTypeSchema } from "@/app/types/zodSchemasForDatabase/weaponDamageType";
 import { fetchWeaponAmmoTypeById, fetchWeaponDamageTypeById, fetchWeaponRarityById, fetchWeaponStatInfoById, fetchWeaponTypeById } from "../dataFetching";
-import { WeaponDamageType, WeaponDamageTypeSchema } from "../types/zodSchemasForDatabase/weaponDamageType";
-import { WeaponStatInfo, WeaponStatInfoSchema } from "../types/zodSchemasForDatabase/weaponStatInfo";
+import { WeaponStatInfo, WeaponStatInfoSchema } from "@/app/types/zodSchemasForDatabase/weaponStatInfo";
 
 export const getWeaponTypeById = async (weaponCategories: number[]): Promise<WeaponBasicData> => {
     const weaponTypeId = weaponCategories.find(category => category >= 5)

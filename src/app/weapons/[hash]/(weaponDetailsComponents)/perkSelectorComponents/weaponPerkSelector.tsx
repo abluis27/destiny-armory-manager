@@ -21,11 +21,11 @@ const WeaponPerkSelector = ({ weapon, selectedPerks, setSelectedPerks }: WeaponP
     } 
 
     return (
-        <div className="bg-medium-dark rounded-sm min-w-90">
+        <div className="bg-medium-dark rounded-sm min-w-90 border-1 border-medium">
             <div className="w-full bg-dark py-3 px-4 rounded-sm">
                 <p>Possible perks</p>
             </div>
-            <div className="flex justify-center gap-7 py-5">
+            <div className="flex justify-center gap-7 py-5 px-5">
                     {
                         (
                             weaponPerkPool.map(

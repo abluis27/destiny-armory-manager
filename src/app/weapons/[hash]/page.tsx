@@ -5,6 +5,8 @@ import { DestinyWeaponData } from "@/app/types/destinyWeaponData"
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponents/weaponPerkSelector";
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
+import WeaponStats from "./(weaponDetailsComponents)/weaponStats";
+import WeaponBasicInfo from "./(weaponDetailsComponents)/weaponBasicInfo";
 
 interface WeaponDetailsProps {
   params: Promise<{ hash: string }>
@@ -33,14 +35,14 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
     weapon ? (
       <div>
         <WeaponDetailsHeader weapon={weapon}/>
-        <div className="flex items-start py-7 gap-10">
-          <div>Placeholder</div>
+        <div className="flex justify-center items-start py-7 gap-10">
+          <WeaponStats weapon={weapon}/>
           <WeaponPerkSelector
             weapon={weapon}
             selectedPerks={selectedPerks}
             setSelectedPerks={setSelectedPerks}
           />
-          <div>Placeholder</div>
+          <WeaponBasicInfo weapon={weapon}/>
         </div>
       </div>
     ) : (

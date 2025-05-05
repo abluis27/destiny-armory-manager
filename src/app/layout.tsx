@@ -1,5 +1,5 @@
 import "./globals.css"
-import Header from "./(home_page_components)/header";
+import Header from "./(homePage_components)/header";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-amber-600 md:bg-red-500 sm:bg-green-600 lg:bg-blue-600">
+      <body>
         <Header/>
         {children}
       </body>

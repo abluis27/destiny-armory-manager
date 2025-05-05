@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { WeaponPreviewInfo } from "../types/zodSchemasForDatabase/weaponPreviewInfo";
+import { bungieBaseUrl } from "@/lib/utils";
 
 interface WeaponPreviewProps {
     weaponPreviewInfo: WeaponPreviewInfo;
@@ -7,7 +8,6 @@ interface WeaponPreviewProps {
 }
 
 const WeaponPreview = ({ weaponPreviewInfo, setIsOpen }: WeaponPreviewProps) => {
-    const bungieImagesBaseUrl = "https://www.bungie.net"
     return (
       <div key={weaponPreviewInfo.hash}>
         <Link href={`/weapons/${weaponPreviewInfo.hash}`}
@@ -15,10 +15,10 @@ const WeaponPreview = ({ weaponPreviewInfo, setIsOpen }: WeaponPreviewProps) => 
         onClick={() => setIsOpen(false)}>
           <div className='w-13 inline-block relative'>
             <img
-              src = {`${bungieImagesBaseUrl}${weaponPreviewInfo.displayProperties.icon}`} 
+              src = {`${bungieBaseUrl}${weaponPreviewInfo.displayProperties.icon}`} 
             />
             <img
-              src = {`${bungieImagesBaseUrl}${weaponPreviewInfo.iconWatermark}`} 
+              src = {`${bungieBaseUrl}${weaponPreviewInfo.iconWatermark}`} 
               className="absolute top-0 left-0 z-69"
             />
           </div>

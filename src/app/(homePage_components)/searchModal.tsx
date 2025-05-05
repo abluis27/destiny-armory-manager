@@ -38,14 +38,13 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
     } catch (error) {
       console.log("API ERROR: ", error)
     }
-  }, 500)
+  }, 300)
 
   const sortResults = (weapons: WeaponPreviewInfo[]) => {
     return weapons
       .sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
   };
   
-  // TODO: Revise the mobile version
   return (
     // Semi transparent background
     <div
@@ -57,7 +56,7 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
       {/* Modal */}
       <div
         className="bg-medium-dark py-4 rounded-lg
-        inset-0
+        inset-0 h-screen
         sm:w-170 sm:h-130"
         onClick={(e) => e.stopPropagation()}
       >
@@ -83,7 +82,7 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
 
         {/* Displaying the search results */}
         <div className="px-4 overflow-y-auto h-full
-        sm:overflow-y-scroll sm:max-h-[51vh]">
+        sm:overflow-y-scroll sm:max-h-[49vh]">
           {
              searchResults.length != 0 ? (
               <div className='flex flex-col'>

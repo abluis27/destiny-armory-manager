@@ -20,6 +20,7 @@ const Header = () => {
             alt="Icon of the page"
             width={32}
             height={32}
+            className='bg-amber-600 md:bg-red-500 sm:bg-green-600 lg:bg-blue-600'
           />
         </Link>
         <p className="text-xl hidden lg:block">DAM</p>

@@ -13,6 +13,7 @@ export const getDestinyWeaponDataById = async (weaponId: number): Promise<Destin
     const weaponDamageType = await getWeaponDamageTypeById(toSignedInt32(weaponCoreInfo.defaultDamageTypeHash))
     const weaponAmmoType = await getWeaponAmmoTypeById(weaponCoreInfo.equippingBlock.ammoType)
     const rarity = await getWeaponRarityById(weaponCoreInfo.inventory.tierType)
+    const weaponType = await getWeaponTypeById(weaponCoreInfo.itemCategoryHashes)
 
     return {
         hash: weaponCoreInfo.hash,
@@ -24,7 +25,8 @@ export const getDestinyWeaponDataById = async (weaponId: number): Promise<Destin
         perkPool: weaponPerkPoolsInfo,
         damageType: weaponDamageType,
         ammoType: weaponAmmoType,
-        rarity: rarity
+        rarity: rarity,
+        weaponType: weaponType
     };
 };
 

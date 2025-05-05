@@ -13,7 +13,7 @@ const PerkSelectorColumn = ({
         const isSelected = selectedPerk?.hash === perk.hash;
         const itemType = perk.itemTypeDisplayName;
 
-        if (!perkIcon || itemType === "") return null;
+        if (!perkIcon || itemType === "" || itemType.includes("Enhanced")) return null;
 
         return (
           <div

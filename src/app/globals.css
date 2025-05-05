@@ -27,7 +27,7 @@
 }
 
 body {
-  /* background-color: var(--color-darkest);*/
+  background-color: var(--color-darkest);
   color: var(--color-off-white)
 }
 

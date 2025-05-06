@@ -1,5 +1,5 @@
 import { bungieBaseUrl } from "@/lib/utils"
-import { WeaponDetailsComponentProps } from "./interfaces/WeaponDetailsComponentProps"
+import { WeaponDetailsComponentProps } from "../../../interfaces/weaponDetails/WeaponDetailsComponentProps"
 
 const WeaponDetailsHeader = ({ weapon }: WeaponDetailsComponentProps) => {
     return (

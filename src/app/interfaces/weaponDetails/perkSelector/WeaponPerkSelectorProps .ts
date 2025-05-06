@@ -1,5 +1,5 @@
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
-import { WeaponDetailsComponentProps } from "./WeaponDetailsComponentProps";
+import { WeaponDetailsComponentProps } from "../WeaponDetailsComponentProps";
 
 export interface WeaponPerkSelectorProps extends WeaponDetailsComponentProps {
   selectedPerks: (WeaponPerkInfo | null)[];

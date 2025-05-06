@@ -30,13 +30,16 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
     };
     getDestinyWeaponData();
   }, [hash]);
-
+  
   return (
     weapon ? (
       <div>
         <WeaponDetailsHeader weapon={weapon}/>
-        <div className="flex justify-center items-start py-7 gap-10">
-          <WeaponStats weapon={weapon}/>
+        <div className="flex justify-center items-start py-10 gap-17">
+          <WeaponStats
+            weaponStatValues={weapon.stats}
+            weaponType={weapon.weaponType.name}
+          />
           <WeaponPerkSelector
             weapon={weapon}
             selectedPerks={selectedPerks}

@@ -1,4 +1,4 @@
-import { PerkSelectorColumnProps } from "../interfaces/PerkSelectorColumnProps";
+import { PerkSelectorColumnProps } from "../../../../interfaces/weaponDetails/perkSelector/PerkSelectorColumnProps";
 import PerkSelectorItem from "./perkSelectorIem";
 
 const PerkSelectorColumn = ({
@@ -11,6 +11,8 @@ const PerkSelectorColumn = ({
     (perk, index, self) =>
       index === self.findIndex((p) => p.hash === perk.hash)
   )
+
+  console.log(perkPool)
 
   return (
     <div className="flex flex-col items-center gap-3">

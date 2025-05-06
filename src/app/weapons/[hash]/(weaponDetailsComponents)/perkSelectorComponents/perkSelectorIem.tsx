@@ -1,5 +1,5 @@
 import { bungieBaseUrl } from "@/lib/utils"
-import { PerkSelectorItemProps } from "../interfaces/PerkSelectorItemProps"
+import { PerkSelectorItemProps } from "../../../../interfaces/weaponDetails/perkSelector/PerkSelectorItemProps"
 
 const PerkSelectorItem = ({
   perk,
@@ -9,7 +9,7 @@ const PerkSelectorItem = ({
     const perkIcon = perk.displayProperties.icon;
     const itemType = perk.itemTypeDisplayName;
 
-    if (!perkIcon || itemType === "" || itemType.includes("Enhanced")) return null;
+    if (!perkIcon || itemType.includes("Enhanced")) return null;
     return (
         <div
             key={perk.hash}

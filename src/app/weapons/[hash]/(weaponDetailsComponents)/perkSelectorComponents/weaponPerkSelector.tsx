@@ -1,4 +1,4 @@
-import { WeaponPerkSelectorProps } from "../interfaces/WeaponPerkSelectorProps "
+import { WeaponPerkSelectorProps } from "@/app/interfaces/weaponDetails/perkSelector/WeaponPerkSelectorProps ";
 import PerkSelectorColumn from "./perkSelectorColumn"
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
 
@@ -36,7 +36,7 @@ const WeaponPerkSelector = ({
             <div className="w-full bg-dark py-3 px-4 rounded-sm">
                 <p>Possible perks</p>
             </div>
-            <div className="flex justify-center gap-7 py-5 px-5">
+            <div className="flex justify-center gap-7 py-5 px-8">
                     {
                         (
                             weaponPerkPool.map(
@@ -50,7 +50,7 @@ const WeaponPerkSelector = ({
                             )
                         )
                     }
-                </div>
+            </div>
         </div>
     )
 }

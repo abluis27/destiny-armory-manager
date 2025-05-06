@@ -21,3 +21,9 @@ export const WeaponBasicDataWithIconSchema = WeaponBasicDataSchema.extend({
 export type DestinyDefinition = z.infer<typeof DestinyDefinitionSchema>;
 export type WeaponBasicData = z.infer<typeof WeaponBasicDataSchema>;
 export type WeaponBasicDataWithIcon = z.infer<typeof WeaponBasicDataWithIconSchema>;
+
+export type WeaponStatLayout = {
+    basicStats: number[];
+    magazineStats: number[];
+};
+  

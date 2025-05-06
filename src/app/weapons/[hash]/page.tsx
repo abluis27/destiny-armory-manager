@@ -5,8 +5,8 @@ import { DestinyWeaponData } from "@/app/types/destinyWeaponData"
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponents/weaponPerkSelector";
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
-import WeaponStats from "./(weaponDetailsComponents)/weaponStats";
 import WeaponBasicInfo from "./(weaponDetailsComponents)/weaponBasicInfo";
+import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
 
 interface WeaponDetailsProps {
   params: Promise<{ hash: string }>

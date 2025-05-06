@@ -43,7 +43,7 @@ export type Sockets = z.infer<typeof SocketsSchema>;
 export const StatsSchema = z.object({
     "stats": z.record(z.string(), StatSchema),
 });
-export type Stats = z.infer<typeof StatsSchema>;
+export type WeaponStats = z.infer<typeof StatsSchema>;
 
 export const WeaponCoreInfoWithoutIdSchema = z.object({
     "displayProperties": DisplayPropertiesSchema,

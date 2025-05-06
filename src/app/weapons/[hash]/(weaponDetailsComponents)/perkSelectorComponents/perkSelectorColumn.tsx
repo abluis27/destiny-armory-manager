@@ -1,34 +1,29 @@
-import { bungieBaseUrl } from "@/lib/utils";
-import { PerkSelectorColumnProps } from "../interfaces/PerkSelectorColumnProps";
+import { PerkSelectorColumnProps } from "../../../../interfaces/weaponDetails/perkSelector/PerkSelectorColumnProps";
+import PerkSelectorItem from "./perkSelectorIem";
 
 const PerkSelectorColumn = ({
   perkPool,
   selectedPerk,
   onSelect,
 }: PerkSelectorColumnProps) => {
+  // For some reason some perks are duplicate in the same column? (Bungie's fault)
+  const uniquePerks = perkPool.filter(
+    (perk, index, self) =>
+      index === self.findIndex((p) => p.hash === perk.hash)
+  )
+
+  console.log(perkPool)
+
   return (
     <div className="flex flex-col items-center gap-3">
-      {perkPool.map((perk) => {
-        const perkIcon = perk.displayProperties.icon;
+      {uniquePerks.map((perk) => {
         const isSelected = selectedPerk?.hash === perk.hash;
-        const itemType = perk.itemTypeDisplayName;
-
-        if (!perkIcon || itemType === "" || itemType.includes("Enhanced")) return null;
-
         return (
-          <div
-            key={perk.hash}
-            onClick={() => onSelect(perk)}
-            className={`rounded-full p-1 cursor-pointer border-1 border-off-white transition
-              ${isSelected ? "bg-blue-500" : "bg-medium"}
-            `}
-          >
-            <img
-              src={`${bungieBaseUrl}${perkIcon}`}
-              alt={perk.displayProperties.name}
-              className="w-10 h-10 rounded-full object-cover"
-            />
-          </div>
+          <PerkSelectorItem
+            perk={perk}
+            isSelected={isSelected}
+            onSelect={onSelect}
+          />
         );
       })}
     </div>

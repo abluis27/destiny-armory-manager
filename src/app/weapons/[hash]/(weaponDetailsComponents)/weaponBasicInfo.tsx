@@ -1,12 +1,12 @@
 import { bungieBaseUrl } from "@/lib/utils"
-import { WeaponDetailsComponentProps } from "./interfaces/WeaponDetailsComponentProps"
+import { WeaponDetailsComponentProps } from "../../../interfaces/weaponDetails/WeaponDetailsComponentProps"
 
 const WeaponBasicInfo = ({ weapon }: WeaponDetailsComponentProps) => {
     const intrinsictPerk = weapon.perkPool?.[0]?.[0] ?? null
     
     return (
         // Container
-        <div className="flex flex-col justify-center items-center gap-7 border-l-1 px-10 pb-15">
+        <div className="flex flex-col justify-center items-center gap-7 border-l-1 px-15 pb-15">
             {/* Weapon image */}
             <div>
                 <img

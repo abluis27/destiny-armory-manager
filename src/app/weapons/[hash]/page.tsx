@@ -30,11 +30,18 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
     };
     getDestinyWeaponData();
   }, [hash]);
+
+  const onCurrentRollSaved = () => {
+    alert("Balls")
+  }
   
   return (
     weapon ? (
       <div>
-        <WeaponDetailsHeader weapon={weapon}/>
+        <WeaponDetailsHeader 
+          weapon={weapon}
+          onSaved={onCurrentRollSaved}
+        />
         <div className="flex justify-center items-start py-10 gap-17">
           <WeaponStats
             weaponStatValues={weapon.stats}

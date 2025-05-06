@@ -6,12 +6,13 @@ const WeaponBasicInfo = ({ weapon }: WeaponDetailsComponentProps) => {
     
     return (
         // Container
-        <div className="flex flex-col justify-center items-center gap-7 border-l-1 px-15 pb-15">
+        <div className="h-full flex flex-col 
+        justify-center items-center gap-7 border-l-1 px-15 pb-15">
             {/* Weapon image */}
             <div>
                 <img
                     src = {`${bungieBaseUrl}${weapon.screenshot}`}
-                    className="max-w-90"
+                    className="max-w-90 rounded-md"
                 />
             </div>
             {/* Actual basic info */}

@@ -49,7 +49,7 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
     // Semi transparent background
     <div
     className="bg-black/75
-      inset-0 z-50 fixed overflow-y-auto
+      inset-0 z-100 fixed overflow-y-auto
       sm:flex sm:items-center sm:justify-center sm:bg-opacity-50"
       onClick={() => setIsOpen(false)}
     >

@@ -1,5 +1,3 @@
-import { WeaponDetailsComponentProps } from "./WeaponDetailsComponentProps";
-
-export interface WeaponDetailsHeaderProps extends WeaponDetailsComponentProps {
-    onSaved: () => void
+export interface WeaponDetailsProps {
+    params: Promise<{ hash: string }>
 }

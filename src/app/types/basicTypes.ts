@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { WeaponPerkInfo } from "./zodSchemasForDatabase/weaponPerkInfo";
+import { WeaponDamageType } from "./zodSchemasForDatabase/weaponDamageType";
 
 // DestinyDefinition schema
 export const DestinyDefinitionSchema = z.object({
@@ -26,4 +28,12 @@ export type WeaponStatLayout = {
     basicStats: number[];
     magazineStats: number[];
 };
-  
+
+export type WeaponBasicInfo = {
+    hash: number
+    flavorText: string
+    screenshot: string
+    damageType: WeaponDamageType
+    ammoType: WeaponBasicDataWithIcon
+    intrinsictPerk: WeaponPerkInfo
+}

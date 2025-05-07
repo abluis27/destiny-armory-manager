@@ -12,8 +12,6 @@ const PerkSelectorColumn = ({
       index === self.findIndex((p) => p.hash === perk.hash)
   )
 
-  console.log(perkPool)
-
   return (
     <div className="flex flex-col items-center gap-3">
       {uniquePerks.map((perk) => {

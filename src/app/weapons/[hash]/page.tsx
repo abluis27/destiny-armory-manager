@@ -39,10 +39,6 @@ const getWeaponBasicInfo = (weapon: DestinyWeaponData): WeaponBasicInfo => {
   } 
 }
 
-const onCurrentRollSaved = () => {
-  alert("Balls")
-}
-
 export default function WeaponDetails({ params }: WeaponDetailsProps) {
   const { hash } = use(params)
   const [weapon, setWeapon] = useState<DestinyWeaponData | null>(null)
@@ -68,9 +64,11 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       setSelectedPerks(Array(weaponPerkPool.length).fill(EMPTY_PERK))
     }
   }, [weaponPerkPool])
-
-  console.log(selectedPerks)
   
+  const onCurrentRollSaved = () => {
+    alert(selectedPerks.map(perk => perk.displayProperties.name))
+  }
+
   return (
     weapon ? (
       <div>
@@ -95,7 +93,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       </div>
     ) : (
       // Add a gif or something for the loading page (or even a Skeleton)
-      <div>
+      <div className="flex justify-center items-center">
         <p>Loading data...</p>
       </div>
     )

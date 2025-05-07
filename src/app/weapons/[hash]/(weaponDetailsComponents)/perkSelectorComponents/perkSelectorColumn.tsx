@@ -13,7 +13,7 @@ const PerkSelectorColumn = ({
   )
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3 px-4">
       {uniquePerks.map((perk) => {
         const isSelected = selectedPerk?.hash === perk.hash;
         return (

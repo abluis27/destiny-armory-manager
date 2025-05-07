@@ -24,7 +24,7 @@ const WeaponPerkSelector = ({
             <div className="w-full bg-dark py-3 px-4 rounded-sm">
                 <p>Possible perks</p>
             </div>
-            <div className="flex justify-center gap-7 py-5 px-8">
+            <div className="flex justify-center py-5 px-6 divide-x divide-light-medium">
                     {
                         (
                             perkPool.map(

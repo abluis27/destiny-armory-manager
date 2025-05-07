@@ -13,7 +13,7 @@ const WeaponStats = ({
             <div className="w-full bg-dark py-3 px-4 rounded-sm">
                 <p>Stats</p>
             </div>
-            <div className="px-5 pt-5 pb-15 flex flex-col gap-5">
+            <div className="px-5 pt-5 pb-15 flex flex-col gap-7">
                 {/* Basic stats */}
                 <div className="flex flex-col gap-4">
                     {
@@ -32,7 +32,7 @@ const WeaponStats = ({
                     }
                 </div>
                 {/* Magazine Stats */}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 border-t-1 border-off-white pt-5">
                    {
                     (
                         weaponStatLayout.magazineStats.map(statHash => {

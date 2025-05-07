@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { DestinyWeaponData } from "@/app/types/destinyWeaponData"
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponents/weaponPerkSelector";
@@ -9,7 +9,9 @@ import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInfor
 import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
 import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsProps";
 import { EMPTY_PERK } from "./(weaponDetailsComponents)/emptyPerk";
-import { WeaponBasicInfo } from "@/app/types/basicTypes";
+import { SavedRoll, WeaponBasicInfo } from "@/app/types/basicTypes";
+import useStorageState from "@/app/frontend_services/useStorageState";
+import React from "react";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
@@ -40,10 +42,12 @@ const getWeaponBasicInfo = (weapon: DestinyWeaponData): WeaponBasicInfo => {
 }
 
 export default function WeaponDetails({ params }: WeaponDetailsProps) {
-  const { hash } = use(params)
+  const  { hash } = React.use(params);
   const [weapon, setWeapon] = useState<DestinyWeaponData | null>(null)
   const [weaponPerkPool, setWeaponPerkPool] = useState<WeaponPerkInfo[][]>()
   const [selectedPerks, setSelectedPerks] = useState<WeaponPerkInfo[]>([]);
+  const [weaponWishlist, setWeaponWishlist] = useStorageState<SavedRoll[]>("weaponWishlist", []);
+
   
   useEffect(() => {
     const getDestinyWeaponData = async () => {
@@ -66,7 +70,19 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
   }, [weaponPerkPool])
   
   const onCurrentRollSaved = () => {
-    alert(selectedPerks.map(perk => perk.displayProperties.name))
+    // TODO: display error
+    if (!weapon) return;
+
+    const newRoll: SavedRoll = {
+      id: crypto.randomUUID(),
+      weaponHash: weapon?.hash,
+      displayProperties: weapon?.displayProperties,
+      weaponType: weapon?.weaponType,
+      savedPerks: selectedPerks
+    }
+
+    setWeaponWishlist([...weaponWishlist, newRoll]);
+    alert("Roll saved!")
   }
 
   return (

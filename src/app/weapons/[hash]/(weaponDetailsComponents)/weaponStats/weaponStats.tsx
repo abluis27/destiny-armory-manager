@@ -8,6 +8,7 @@ const WeaponStats = ({
     weaponType
  }: WeaponStatsProps) => {
     const weaponStatLayout = getWeaponStatLayout(weaponType)
+
     return (
         <div className="bg-medium-dark rounded-sm min-w-90 border-1 border-medium">
             <div className="w-full bg-dark py-3 px-4 rounded-sm">

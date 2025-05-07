@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="md:min-h-300 overflow-y-auto">
         <Header/>
         {children}
       </body>

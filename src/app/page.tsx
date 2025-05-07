@@ -1,8 +1,21 @@
-export default async function Home() {
-  let savedWeapons = []
+"use client"
+import { useEffect } from "react";
+import useStorageState from "./frontend_services/useStorageState";
+import { SavedRoll } from "./types/basicTypes";
+
+export default function Home() {
+  const [savedRolls, setSavedRolls] = useStorageState<SavedRoll[]>("weaponWishlist", []);
+  
+  // Optional: Check if saved rolls exist
+  useEffect(() => {
+    if (savedRolls.length === 0) {
+      console.log("No saved rolls found");
+    } else {
+      console.log(savedRolls)
+    }
+  }, [savedRolls]);
 
   return (
-    // For testing porpuses
     <div>
       <div className="flex justify-center items-center
       bg-medium-dark py-3">
@@ -12,15 +25,6 @@ export default async function Home() {
       <div>
         <p className="py-4 px-3 text-xl">Weapon List</p>
       </div>
-      {
-        savedWeapons.length != 0 ? (
-          <p>Balls</p>
-        ) : (
-        <div className="w-full h-screen flex justify-center items-center">
-          <p>No weapons added yet.</p>
-        </div>
-        )
-      }
     </div>
   );
 }

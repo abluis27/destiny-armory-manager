@@ -11,8 +11,6 @@ const PerkSelectorItem = ({
     const perkIcon = perk.displayProperties.icon;
     const itemType = perk.itemTypeDisplayName;
 
-    console.log(perk.displayProperties.description)
-
     if (!perkIcon || itemType.includes("Enhanced")) return null;
     return (
         <div className="relative inline-block">
@@ -21,6 +19,8 @@ const PerkSelectorItem = ({
                 className={`relative rounded-full p-1 cursor-pointer border-1 border-off-white transition
                 ${isSelected ? "bg-blue-500" : "bg-medium"}
                 `}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
             >
                 <img
                 src={`${bungieBaseUrl}${perkIcon}`}
@@ -29,7 +29,7 @@ const PerkSelectorItem = ({
                 />
 
                 {/* Center Overlay (hover trigger) */}
-                <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 z-10" 
+                <div className="" 
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}
                 />

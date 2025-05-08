@@ -1,5 +1,6 @@
 import { bungieBaseUrl } from "@/lib/utils"
 import { WeaponDetailsHeaderProps } from "@/app/interfaces/weaponDetails/WeaponDetailsHeaderProps"
+import WeaponIcon from "@/app/(generalComponents)/WeaponIcon"
 
 const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
     return (
@@ -8,18 +9,11 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
       ">
         {/* Weapon info */}
         <div className="flex items-center gap-5">
-          <div className='inline-block relative border-1 border-medium-light'>
-            <img
-                src={`${bungieBaseUrl}${weapon.displayProperties.icon}`}
-                className="max-w-15"
-                alt="Weapon icon"
-            />
-            <img
-                src={`${bungieBaseUrl}${weapon.iconWatermark}`}
-                className="absolute top-0 left-0 z-69 max-w-15"
-                alt="Weapon season icon"
-            />
-          </div>
+          <WeaponIcon
+            icon={weapon.displayProperties.icon}
+            iconWatermark={weapon.iconWatermark}
+            className={"w-15 border-1 border-medium-light"}
+          />
           <div>
             <p className="text-lg uppercase">{weapon.displayProperties.name}</p>
             <p className="text-sm uppercase">{weapon.weaponType.name}</p>

@@ -80,7 +80,8 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       weaponType: weapon?.weaponType,
       damageType: weapon.damageType,
       savedPerks: selectedPerks,
-      ammoType: weapon.ammoType
+      ammoType: weapon.ammoType,
+      iconWatermark: weapon.iconWatermark
     }
 
     setWeaponWishlist([...weaponWishlist, newRoll]);

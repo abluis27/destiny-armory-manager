@@ -18,6 +18,12 @@ export const getFilteredWeaponWishList = (wishList: SavedRoll[], filterKey: Wish
         }
     })
 
+    Object.values(filteredWishList).forEach(group => {
+        group.sort((a, b) => 
+            a.displayProperties.name.localeCompare(b.displayProperties.name)
+        )
+    })
+
     return filteredWishList
 }
 

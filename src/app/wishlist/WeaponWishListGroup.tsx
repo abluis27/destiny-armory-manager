@@ -2,12 +2,22 @@ import { WeaponWishListGroupProps } from "../interfaces/wishList/WeaponWishListG
 import WeaponWishListItem from "./WeaponWishListItem"
 
 const WeaponWishListGroup = ({
-    savedRolls
+    savedRolls,
+    onClickDelete
 }: WeaponWishListGroupProps) => {
     return (
-        savedRolls.map(savedRoll => {
-            return <WeaponWishListItem savedRoll={savedRoll}/>
-        })
+        <div className="flex gap-10 py-4">
+            {
+                (
+                    savedRolls.map(savedRoll => {
+                        return <WeaponWishListItem
+                            savedRoll={savedRoll}
+                            onClickDelete={onClickDelete}
+                        />
+                    })
+                )
+            }
+        </div>
     )
 }
 

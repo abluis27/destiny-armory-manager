@@ -17,6 +17,14 @@ export default function WishList() {
     }
   }, [savedRolls]);
 
+  const onClickDelete = (wishListId: string) => {
+    const updatedRolls = savedRolls.filter(roll => roll.id !== wishListId);
+    setSavedRolls(updatedRolls);
+  
+    const updatedWishList = getFilteredWeaponWishList(updatedRolls, filterKey);
+    setWishList(updatedWishList);
+  };
+
   return (
     <div>
       <div className="flex justify-center items-center
@@ -30,6 +38,7 @@ export default function WishList() {
           savedRolls.length > 0 ? (
             <WeaponWishListDisplay
               wishList={wishList}
+              onClickDelete={onClickDelete}
             />
           ) : (
             <p>No weapon rolls saved yet</p>

@@ -15,8 +15,9 @@ const PerkSelectorItem = ({
     return (
         <div className="relative inline-block">
             <div
-                onClick={() => onSelect(perk)}
-                className={`relative rounded-full p-1 cursor-pointer border-1 border-off-white
+                onClick={() => onSelect && onSelect(perk)}
+                className={`relative rounded-full p-1 border-1 border-off-white
+                ${onSelect && "cursor-pointer"}
                 transition duration-300
                 ${isSelected ? "bg-blue-500 hover:border-medium-dark" : "bg-medium hover:border-blue-500"}
                 `}
@@ -27,12 +28,6 @@ const PerkSelectorItem = ({
                 src={`${bungieBaseUrl}${perkIcon}`}
                 alt={perk.displayProperties.name}
                 className="w-10 h-10 rounded-full object-cover"
-                />
-
-                {/* Center Overlay (hover trigger) */}
-                <div className="" 
-                    onMouseEnter={() => setHovered(true)}
-                    onMouseLeave={() => setHovered(false)}
                 />
             </div>
             {/* Tooltip below the image */}

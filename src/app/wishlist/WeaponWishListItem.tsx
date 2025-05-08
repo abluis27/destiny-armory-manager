@@ -1,15 +1,76 @@
+import Swal from "sweetalert2";
+import WeaponIcon from "../(generalComponents)/WeaponIcon";
 import { WeaponWishListItemProps } from "../interfaces/wishList/WeaponWishListItemProps";
+import PerkSelectorItem from "../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
 
-const WeaponWishListItem = ({savedRoll}: WeaponWishListItemProps) => {
+// I cannot use tailwind classes for the sweet alert modals
+const bgColor = getComputedStyle(document.documentElement)
+.getPropertyValue('--color-medium-dark')
+const textColor = getComputedStyle(document.documentElement)
+.getPropertyValue('--color-off-white')
+
+
+const WeaponWishListItem = ({
+    savedRoll,
+    onClickDelete
+}: WeaponWishListItemProps) => {
+    const savedPerks = savedRoll.savedPerks
+
+    const onAdquieredRoll = () => {
+        Swal.fire({
+            title: "Roll adquire",
+            text: "This item will be removed from the list.",
+            icon: "warning",
+            color: textColor,
+            background: bgColor,
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Delete item"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                onClickDelete(savedRoll.id)
+                Swal.fire({
+                    title: "Item deleted",
+                    icon: "success",
+                    color: textColor,
+                    background: bgColor
+                });
+            }
+          });
+    }
+
     return (
-        <div className="bg-medium-dark">
-            <div>
-                <div>
-
+        <div className="bg-medium-dark min-w-90 border-1 border-light-mediumrounded
+        hover:border-blue-500 transition duration-300"
+        >
+            <div className="flex items-center justify-between pr-5">
+                <div className="flex gap-5 p-3">
+                    <WeaponIcon
+                        icon={savedRoll.displayProperties.icon}
+                        iconWatermark={savedRoll.iconWatermark}
+                        className="w-15 border-1 border-light-medium"
+                    />
+                    <div className="flex items-center">
+                        <p className="text-md">{savedRoll.displayProperties.name}</p>
+                    </div>
                 </div>
-                <div>
-                    <p>{savedRoll.displayProperties.name}</p>
+                <div className="w-10 b">
+                    <img 
+                        src="/icons/completed-icon.svg"
+                        className="cursor-pointer bg-medium rounded-full
+                        hover:bg-blue-500 transition duration-300"
+                        onClick={() => onAdquieredRoll()}
+                    />
                 </div>
+            </div>
+            <div className="flex items-center justify-center gap-5 py-4">
+                {
+                    (
+                        savedPerks.map(perk => 
+                            <PerkSelectorItem perk={perk}/>)
+                    )
+                }   
             </div>
         </div>
     )

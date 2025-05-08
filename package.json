@@ -17,6 +17,7 @@
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sweetalert2": "^11.21.0",
     "use-debounce": "10.0.4",
     "zod": "^3.24.3"
   },

@@ -42,6 +42,7 @@ export type SavedRoll = {
     damageType: WeaponDamageType
     savedPerks: WeaponPerkInfo[]
     ammoType: WeaponBasicData
+    iconWatermark: string
 }
 
 export type WishListFilterKey = "ammoType"

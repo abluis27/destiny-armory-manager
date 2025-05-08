@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { WeaponPreviewInfo } from "../../types/zodSchemasForDatabase/weaponPreviewInfo";
 import { bungieBaseUrl } from "@/lib/utils";
+import WeaponIcon from "../WeaponIcon";
 
 interface WeaponPreviewProps {
     weaponPreviewInfo: WeaponPreviewInfo;
@@ -13,15 +14,11 @@ const WeaponPreview = ({ weaponPreviewInfo, setIsOpen }: WeaponPreviewProps) => 
         <Link href={`/weapons/${weaponPreviewInfo.hash}`}
         className="py-1 w-full flex uppercase"
         onClick={() => setIsOpen(false)}>
-          <div className='w-13 inline-block relative'>
-            <img
-              src = {`${bungieBaseUrl}${weaponPreviewInfo.displayProperties.icon}`} 
-            />
-            <img
-              src = {`${bungieBaseUrl}${weaponPreviewInfo.iconWatermark}`} 
-              className="absolute top-0 left-0 z-69"
-            />
-          </div>
+          <WeaponIcon
+            icon={weaponPreviewInfo.displayProperties.icon}
+            iconWatermark={weaponPreviewInfo.iconWatermark}
+            className="w-13"
+          /> 
           <div className='pl-3'>
             <p>{weaponPreviewInfo.displayProperties.name}</p>
             <p className="text-sm">{weaponPreviewInfo.weaponType.name}</p>

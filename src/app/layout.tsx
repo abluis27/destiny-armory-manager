@@ -1,5 +1,5 @@
+import Header from "./(generalComponents)/header";
 import "./globals.css"
-import Header from "./(homePage_components)/header";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="md:min-h-300 overflow-y-auto">
         <Header/>
         {children}
       </body>

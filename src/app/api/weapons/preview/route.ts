@@ -1,4 +1,4 @@
-import { getDestinyWeaponsPreviewDataByName } from "@/lib/services/destinyWeaponServices"
+import { getDestinyWeaponsPreviewDataByName } from "@/lib/services/destinyWeaponData/destinyWeaponServices"
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest) => {

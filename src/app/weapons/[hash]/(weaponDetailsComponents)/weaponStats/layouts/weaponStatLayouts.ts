@@ -40,7 +40,7 @@ const SWORD_MAGAZINE_STATS = [
 ]
 
 // Fusion Weapons Unique Stats
-const FUSION_WEAPONS_BASIC_STATS = [
+const FUSION_WEAPONS_MAGAZINE_STATS = [
     2961396640, // Charge Time
     3871231066 // Magazine
 ]
@@ -71,8 +71,8 @@ export const getWeaponStatLayout = (weaponType: string): WeaponStatLayout => {
     }
     if(normalizedWeaponType.includes("fusion")) {
         return {
-            basicStats: FUSION_WEAPONS_BASIC_STATS,
-            magazineStats: DEFAULT_MAGAZINE_STATS
+            basicStats: DEFAULT_BASIC_STATS,
+            magazineStats: FUSION_WEAPONS_MAGAZINE_STATS
         }
     }
     if(normalizedWeaponType.includes("launcher")) {

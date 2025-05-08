@@ -28,8 +28,9 @@
 
 body {
   background-color: var(--color-darkest);
-  color: var(--color-off-white)
+  color: var(--color-off-white);
 }
+
 
 /*
 @media (prefers-color-scheme: dark) {

@@ -16,8 +16,9 @@ const PerkSelectorItem = ({
         <div className="relative inline-block">
             <div
                 onClick={() => onSelect(perk)}
-                className={`relative rounded-full p-1 cursor-pointer border-1 border-off-white transition
-                ${isSelected ? "bg-blue-500" : "bg-medium"}
+                className={`relative rounded-full p-1 cursor-pointer border-1 border-off-white
+                transition duration-300
+                ${isSelected ? "bg-blue-500 hover:border-medium-dark" : "bg-medium hover:border-blue-500"}
                 `}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}

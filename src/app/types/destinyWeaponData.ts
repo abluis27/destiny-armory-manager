@@ -3,7 +3,7 @@ import { DisplayPropertiesSchema } from "./zodSchemasForDatabase/commonSchemas";
 import { StatsSchema } from "./zodSchemasForDatabase/weaponCoreInfo";
 import { WeaponPerkInfoSchema } from "./zodSchemasForDatabase/weaponPerkInfo";
 import { WeaponDamageTypeSchema } from "./zodSchemasForDatabase/weaponDamageType";
-import { WeaponBasicDataSchema, WeaponBasicDataWithIconSchema } from "./basicTypes";
+import { WeaponBasicDataSchema } from "./basicTypes";
 
 export const PerkPoolSchema = z.array(z.array(WeaponPerkInfoSchema).optional());
 
@@ -16,7 +16,7 @@ export const DestinyWeaponDataSchema = z.object({
   stats: StatsSchema,
   perkPool: PerkPoolSchema,
   damageType: WeaponDamageTypeSchema,
-  ammoType: WeaponBasicDataWithIconSchema,
+  ammoType: WeaponBasicDataSchema,
   rarity: WeaponBasicDataSchema,
   weaponType: WeaponBasicDataSchema,
 });

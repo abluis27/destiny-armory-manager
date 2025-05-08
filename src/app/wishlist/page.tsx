@@ -1,21 +1,19 @@
 "use client"
 import { useEffect, useState } from "react";
-import { SavedRoll, WishListFilterKey } from "../types/basicTypes";
+import { SavedRoll, WeaponWishList } from "../types/basicTypes";
 import useStorageState from "@/lib/services/localStorage/useStorageState";
-
-const filterWeaponWishList = (wishList: SavedRoll[], filterKey: WishListFilterKey) => {
-  
-}
+import { getFilteredWeaponWishList } from "./weaponWishListUtils";
+import WeaponWishListDisplay from "./WeaponWishListDisplay";
 
 export default function WishList() {
   const [savedRolls, setSavedRolls] = useStorageState<SavedRoll[]>("weaponWishlist", []);
-  const [wishList, setWishList] = useState<SavedRoll[]>([])
+  const filterKey = "ammoType"
+  const [wishList, setWishList] = useState<WeaponWishList>({})
   
   useEffect(() => {
-    if (savedRolls.length === 0) {
-      console.log("No saved rolls found");
-    } else {
-      console.log(savedRolls)
+    if (savedRolls.length > 0) {
+      const filteredWishList = getFilteredWeaponWishList(savedRolls, filterKey)
+      setWishList(filteredWishList)
     }
   }, [savedRolls]);
 
@@ -28,6 +26,15 @@ export default function WishList() {
       </div>
       <div>
         <p className="py-4 px-3 text-xl">Weapon List</p>
+        {
+          savedRolls.length > 0 ? (
+            <WeaponWishListDisplay
+              wishList={wishList}
+            />
+          ) : (
+            <p>No weapon rolls saved yet</p>
+          )
+        } 
       </div>
     </div>
   );

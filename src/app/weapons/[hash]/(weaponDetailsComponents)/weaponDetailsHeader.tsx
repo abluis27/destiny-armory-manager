@@ -6,6 +6,7 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
       <div className="bg-medium-dark py-2 px-3 flex items-center justify-between
       lg:px-10 lg:py-3
       ">
+        {/* Weapon info */}
         <div className="flex items-center gap-5">
           <div className='inline-block relative border-1 border-medium-light'>
             <img
@@ -24,10 +25,12 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
             <p className="text-sm uppercase">{weapon.weaponType.name}</p>
           </div>
         </div>
+
+        {/* Save roll button */}
         <div  className="px-15">
-          <button className="bg-medium py-2 px-5 rounded-lg border-1
+          <button className="bg-medium py-2 px-5 rounded-lg border-2
            border-light-medium cursor-pointer
-           hover:bg-blue-500"
+           transition duration-300 hover:bg-blue-500"
            onClick={() => onSaved()}
           >+ Save roll</button>
         </div>

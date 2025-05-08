@@ -13,17 +13,12 @@ export const DestinyDefinitionSchema = z.object({
 export const WeaponBasicDataSchema = z.object({
     id: z.number(),
     name: z.string(),
-});
-
-// WeaponBasicDataWithIcon schema
-export const WeaponBasicDataWithIconSchema = WeaponBasicDataSchema.extend({
-    icon: z.string(),
+    icon: z.string().optional()
 });
 
 // Export the types based on the schemas
 export type DestinyDefinition = z.infer<typeof DestinyDefinitionSchema>;
 export type WeaponBasicData = z.infer<typeof WeaponBasicDataSchema>;
-export type WeaponBasicDataWithIcon = z.infer<typeof WeaponBasicDataWithIconSchema>;
 
 export type WeaponStatLayout = {
     basicStats: number[];
@@ -35,7 +30,7 @@ export type WeaponBasicInfo = {
     flavorText: string
     screenshot: string
     damageType: WeaponDamageType
-    ammoType: WeaponBasicDataWithIcon
+    ammoType: WeaponBasicData
     intrinsictPerk: WeaponPerkInfo
 }
 
@@ -46,10 +41,10 @@ export type SavedRoll = {
     weaponType: WeaponBasicData
     damageType: WeaponDamageType
     savedPerks: WeaponPerkInfo[]
+    ammoType: WeaponBasicData
 }
 
-export type WishListFilterKey = "ammoType" | "weaponType" | "damageType";
+export type WishListFilterKey = "ammoType"
 
-export type WeaponWishList = {
-  [filterkey in WishListFilterKey]: SavedRoll[];
-};
+export type WeaponWishList = Record<string, SavedRoll[]>;
+

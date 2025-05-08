@@ -1,5 +1,5 @@
+import Header from "./(generalComponents)/header";
 import "./globals.css"
-import Header from "./(homePage_components)/header";
 export default function RootLayout({
   children,
 }: Readonly<{

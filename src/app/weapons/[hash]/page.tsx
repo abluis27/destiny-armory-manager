@@ -1,17 +1,15 @@
 "use client";
-
-import { useEffect, useState } from "react"
-import { DestinyWeaponData } from "@/app/types/destinyWeaponData"
-import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
-import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponents/weaponPerkSelector";
-import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
-import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInformation";
-import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
 import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsProps";
+import { WeaponBasicInfo, SavedRoll } from "@/app/types/basicTypes";
+import { DestinyWeaponData } from "@/app/types/destinyWeaponData";
+import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
+import useStorageState from "@/lib/services/localStorage/useStorageState";
+import React, { useState, useEffect } from "react";
 import { EMPTY_PERK } from "./(weaponDetailsComponents)/emptyPerk";
-import { SavedRoll, WeaponBasicInfo } from "@/app/types/basicTypes";
-import useStorageState from "@/app/frontend_services/useStorageState";
-import React from "react";
+import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponents/weaponPerkSelector";
+import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInformation";
+import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
+import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
@@ -68,6 +66,8 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       setSelectedPerks(Array(weaponPerkPool.length).fill(EMPTY_PERK))
     }
   }, [weaponPerkPool])
+
+  weapon?.damageType
   
   const onCurrentRollSaved = () => {
     // TODO: display error
@@ -78,6 +78,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       weaponHash: weapon?.hash,
       displayProperties: weapon?.displayProperties,
       weaponType: weapon?.weaponType,
+      damageType: weapon.damageType,
       savedPerks: selectedPerks
     }
 

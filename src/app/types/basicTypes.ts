@@ -44,5 +44,12 @@ export type SavedRoll = {
     weaponHash: number
     displayProperties: DisplayProperties
     weaponType: WeaponBasicData
+    damageType: WeaponDamageType
     savedPerks: WeaponPerkInfo[]
 }
+
+export type WishListFilterKey = "ammoType" | "weaponType" | "damageType";
+
+export type WeaponWishList = {
+  [filterkey in WishListFilterKey]: SavedRoll[];
+};

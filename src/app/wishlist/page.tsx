@@ -27,24 +27,17 @@ export default function WishList() {
 
   return (
     <div>
-      <div className="flex justify-center items-center
-      bg-medium-dark py-3">
-        <p className="text-sm">
-          Your companion for Destiny 2 Weapons and Perks tracking</p>
-      </div>
-      <div>
-        <p className="py-4 px-3 text-xl">Weapon List</p>
-        {
-          savedRolls.length > 0 ? (
-            <WeaponWishListDisplay
-              wishList={wishList}
-              onClickDelete={onClickDelete}
-            />
-          ) : (
-            <p>No weapon rolls saved yet</p>
-          )
-        } 
-      </div>
+      <p className="py-4 px-3 text-xl">Weapon List</p>
+      {
+        savedRolls.length > 0 ? (
+          <WeaponWishListDisplay
+            wishList={wishList}
+            onClickDelete={onClickDelete}
+          />
+        ) : (
+          <p>No weapon rolls saved yet</p>
+        )
+      } 
     </div>
   );
 }

@@ -4,11 +4,12 @@ export default function Home() {
   
 return (
     <div className="flex flex-col">
+      <div className="flex justify-center items-center
+      bg-medium-dark py-3 italic">
+        <p className="text-sm">
+          Your companion for Destiny 2 Weapons and Perks tracking</p>
+      </div>
         <p> I am a home page</p>
-        <Link
-          href="/wishlist"
-          className="bg-medium-dark p-2 w-20"
-        >Go to wish list</Link>
     </div>
     );
   }

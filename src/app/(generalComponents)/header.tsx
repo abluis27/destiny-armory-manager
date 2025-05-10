@@ -9,25 +9,25 @@ const Header = () => {
 
   return (
     <>
-    <header className="sticky top-0 z-50 grid grid-cols-12 
-    bg-dark py-4 px-4 border-b-1 border-light-medium lg:px-10">
+    <header className="sticky top-0 z-50 flex justify-between 
+    bg-dark py-4 px-10 border-b-1 border-light-medium lg:px-10">
       {/* Icon + Title */}
-      <div className="col-span-3
-      flex items-center gap-4">
+      <div className="col-span-3 flex items-center gap-4">
         <Link href="/home">
           <Image
             src="/icons/destiny-icon-white.svg"
             alt="Icon of the page"
             width={32}
             height={32}
-            className='bg-amber-600 md:bg-red-500 sm:bg-green-600 lg:bg-blue-600 xl:bg-purple-500 2xl:bg-green-500'
+            className='transition duration-300 hover:scale-120
+            bg-amber-600 md:bg-red-500 sm:bg-green-600 lg:bg-blue-600 xl:bg-purple-500 2xl:bg-green-500'
           />
         </Link>
         <p className="text-xl hidden lg:block">DAM</p>
       </div>
 
       {/* Search Bar */}
-      <div className="col-span-7 lg:col-start-5 lg:col-end-9
+      <div className="w-1/2 lg:w-150
       flex items-center gap-3 bg-medium py-1 px-3 rounded-md
       border-2 border-medium-dark
       hover:border-blue-500 hover:bg-gray-500"
@@ -40,6 +40,18 @@ const Header = () => {
         />
         <p className="text-sm">Search...</p>
       </div>
+      {/* Wish List icon */}
+      <div className='flex items-center gap-4 
+      transition duration-300 hover:scale-120'>
+        <Link href="/wishlist">
+            <Image
+              src="/icons/wish-list-icon.svg"
+              alt="Wish list icon"
+              width={32}
+              height={32}
+            />
+        </Link>
+      </div>
     </header>
       {isSearchModelOpen && (
         <SearchModal
@@ -50,6 +62,5 @@ const Header = () => {
     </>
   )
 };
-  
 
 export default Header

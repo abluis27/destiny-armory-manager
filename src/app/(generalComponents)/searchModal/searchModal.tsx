@@ -55,7 +55,7 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
     >
       {/* Modal */}
       <div
-        className="bg-medium-dark py-4 rounded-lg
+        className="bg-medium-dark py-4 rounded-lg border-1 border-light-medium
         inset-0 h-screen
         sm:w-170 sm:h-130"
         onClick={(e) => e.stopPropagation()}

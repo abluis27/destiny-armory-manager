@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-    <header className="sticky top-0 z-50 flex justify-between 
+    <header className="sticky top-0 z-1000 flex justify-between 
     bg-dark py-4 px-10 border-b-1 border-light-medium lg:px-10">
       {/* Icon + Title */}
       <div className="col-span-3 flex items-center gap-4">
@@ -23,7 +23,7 @@ const Header = () => {
             bg-amber-600 md:bg-red-500 sm:bg-green-600 lg:bg-blue-600 xl:bg-purple-500 2xl:bg-green-500'
           />
         </Link>
-        <p className="text-xl hidden lg:block">DAM</p>
+        <p className="text-xl hidden lg:block">D.A.M</p>
       </div>
 
       {/* Search Bar */}

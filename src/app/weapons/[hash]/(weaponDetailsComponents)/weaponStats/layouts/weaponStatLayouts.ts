@@ -1,4 +1,5 @@
 import { WeaponStatLayout } from "@/app/types/basicTypes"
+import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
 
 // Default Stats
 const DEFAULT_BASIC_STATS = [
@@ -54,9 +55,18 @@ const EXPLOSIVE_WEAPONS_BASIC_STATS = [
     4188031367, // Reload Speed
 ]
 
-export const getWeaponStatLayout = (weaponType: string, ammoType: string): WeaponStatLayout => {
+// Glaive Unique stats
+const GLAIVE_BASIC_STATS = [
+    4043523819, // Impact
+    1240592695, // Range
+    1842278586,  // Shield Duration
+    943549884,  // Handling
+    4188031367, // Reload Speed
+]
+
+export const getWeaponStatLayout = (weaponType: string, intrinsicPerk: WeaponPerkInfo): WeaponStatLayout => {
     const normalizedWeaponType = weaponType.toLowerCase()
-    const normalizedAmmoType = ammoType.toLowerCase()
+    const normalizedIntrinsicPerkName = intrinsicPerk.displayProperties.name.toLowerCase()
 
     if(normalizedWeaponType === "bow") {
         return {
@@ -77,9 +87,15 @@ export const getWeaponStatLayout = (weaponType: string, ammoType: string): Weapo
         }
     }
     if(normalizedWeaponType.includes("launcher") 
-        || (normalizedWeaponType === "sidearm" && normalizedAmmoType === "special")) {
+        || normalizedIntrinsicPerkName.includes("rocket")) {
         return {
             basicStats: EXPLOSIVE_WEAPONS_BASIC_STATS,
+            magazineStats: DEFAULT_MAGAZINE_STATS
+        }
+    }
+    if(normalizedWeaponType === "glaive") {
+        return {
+            basicStats: GLAIVE_BASIC_STATS,
             magazineStats: DEFAULT_MAGAZINE_STATS
         }
     }

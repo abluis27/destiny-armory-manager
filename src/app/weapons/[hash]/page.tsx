@@ -67,8 +67,6 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
     }
   }, [weaponPerkPool])
 
-  weapon?.damageType
-  
   const onCurrentRollSaved = () => {
     // TODO: display error
     if (!weapon) return;
@@ -99,7 +97,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
           <WeaponStats
             weaponStatValues={weapon.stats}
             weaponType={weapon.weaponType.name}
-            ammoType={weapon.ammoType.name}
+            intrinsicPerk={weapon.perkPool?.[0]?.[0] ?? EMPTY_PERK}
           />
           <WeaponPerkSelector
             perkPool={weaponPerkPool ?? []}

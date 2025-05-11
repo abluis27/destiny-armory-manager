@@ -11,7 +11,7 @@ export const WEAPON_BASIC_STATS: Record<number, string> = {
     2762071195: "Guard Endurance",
     3614673599: "Blast Radius",
     2523465841: "Velocity",
-    
+    1842278586: "Shield Duration" 
 }
 
 export const WEAPON_MAGAZINE_STATS: Record<number, string> = {

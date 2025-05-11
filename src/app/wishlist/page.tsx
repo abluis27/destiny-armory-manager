@@ -5,6 +5,8 @@ import useStorageState from "@/lib/services/localStorage/useStorageState";
 import { getFilteredWeaponWishList } from "./weaponWishListUtils";
 import WeaponWishListDisplay from "./WeaponWishListDisplay";
 import WislistFilterSelect from "./WishListFilterSelect";
+import Swal from "sweetalert2";
+import { showConfirmationAlert, showInfoAlert, showSuccessAlert } from "../(generalComponents)/sweetAlert";
 
 export default function WishList() {
   const [savedRolls, setSavedRolls] = useStorageState<SavedRoll[]>("weaponWishlist", []);
@@ -29,6 +31,24 @@ export default function WishList() {
     setWishList(updatedWishList);
   };
 
+  const onClearWishlist = async () => {
+    if (savedRolls.length > 0) {
+      const confirmed = await showConfirmationAlert(
+        "Clear wishlist",
+        "Are you sure you want to delete all items in the wishlist?"
+      )
+        if (confirmed) {
+          setSavedRolls([])
+          showSuccessAlert("Wishlist cleared")
+        }
+    } else {
+      showInfoAlert(
+        "Wishlist Empty",
+        "There is nothing to clear. Start searching for rolls!"
+      )
+    }
+  }
+
   return (
     <div>
       <div className="py-5 px-7 flex justify-between">
@@ -42,6 +62,7 @@ export default function WishList() {
           bg-medium-dark border-1 border-light-medium
           transition duration-300
           hover:border-red-500"
+          onClick={() => onClearWishlist()}
           >Clear wishlist</button>
         </div>
       </div>

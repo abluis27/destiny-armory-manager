@@ -27,10 +27,22 @@ export const showConfirmationAlert = async (
 
 
 export const showSuccessAlert = (title: string) => {
+    if (typeof window === "undefined") return;
     Swal.fire({
         title: title,
         icon: "success",
         color: sweetAlertTextColor,
         background: sweetAlertBgColor
     });
+}
+
+export const showInfoAlert = (title: string, message: string) => {
+  if (typeof window === "undefined") return;
+  Swal.fire({
+    title: title,
+    text: message,
+    icon: "info",
+    color: sweetAlertTextColor,
+    background: sweetAlertBgColor,
+  });
 }

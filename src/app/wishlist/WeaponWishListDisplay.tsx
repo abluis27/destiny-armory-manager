@@ -6,14 +6,14 @@ const WeaponWishListDisplay = ({
   onClickDelete
 }: WeaponWishListProps) => {
   return (
-    <div className="flex flex-col px-20 divide-y-5 divide-light-medium">
+    <div className="min-h-200 flex flex-col px-20 divide-y-5 divide-light-medium">
       {Object.entries(wishList).map(([group, savedRolls]) => {
         if(savedRolls.length <= 0) return null
         return (
             <div className="py-5">
                 {/* Group type */}
                 <div className="">
-                    <p className="text-xl">{group}</p>
+                    <p className="text-2xl italic">{group}</p>
                 </div>
                 {/* Content */}
                 <WeaponWishListGroup

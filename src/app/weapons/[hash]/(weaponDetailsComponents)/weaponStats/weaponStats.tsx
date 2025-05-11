@@ -6,9 +6,9 @@ import StatBar from "./statBar"
 const WeaponStats = ({ 
     weaponStatValues,
     weaponType,
-    ammoType
+    intrinsicPerk
  }: WeaponStatsProps) => {
-    const weaponStatLayout = getWeaponStatLayout(weaponType, ammoType)
+    const weaponStatLayout = getWeaponStatLayout(weaponType, intrinsicPerk)
 
     return (
         <div className="bg-medium-dark rounded-sm min-w-90 border-1 border-medium">

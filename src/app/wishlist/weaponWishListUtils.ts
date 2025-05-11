@@ -1,12 +1,35 @@
 import { SavedRoll, WeaponWishList, WishListFilterKey } from "../types/basicTypes";
 
 const filters = {
-    "ammoType": [
-        "Primary",
-        "Special",
-        "Heavy"
-    ]
-}
+  ammoType: [
+    "Primary",
+    "Special",
+    "Heavy"
+  ],
+  damageType: [
+    "Kinetic",
+    "Arc",
+    "Solar",
+    "Void",
+    "Stasis",
+    "Strand"
+  ],
+  weaponType: [
+    "Auto Rifle",
+    "Pulse Rifle",
+    "Hand Cannon",
+    "Scout Rifle",
+    "Sniper Rifle",
+    "Fusion Rifle",
+    "Rocket Launcher",
+    "Sword",
+    "Bow",
+    "Submachine Gun",
+    "Machine Gun",
+    "Glaive"
+  ]
+};
+
 
 export const getFilteredWeaponWishList = (wishList: SavedRoll[], filterKey: WishListFilterKey) => {
     const filteredWishList = getInitialMappedWishList(filterKey)

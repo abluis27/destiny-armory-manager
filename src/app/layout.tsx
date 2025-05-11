@@ -1,4 +1,5 @@
 "use client"
+import Footer from "./(generalComponents)/footer.";
 import Header from "./(generalComponents)/header";
 import "./globals.css"
 import { usePathname } from 'next/navigation';
@@ -13,7 +14,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="md:min-h-300 overflow-y-auto">
+      <body className="overflow-y-auto">
         <Header/>
         {
           showQuote && (
@@ -25,6 +26,7 @@ export default function RootLayout({
           )
         }
         {children}
+        <Footer/>
       </body>
     </html>
   );

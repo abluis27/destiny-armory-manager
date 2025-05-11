@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Home() {
 return (
     <div className="flex flex-col justify-center items-center py-10">
-        <div className="w-300 flex flex-col gap-10">
+        <div className="w-340 flex flex-col gap-10">
             {/* Introduction */}
             <div className="  bg-medium-dark
             flex justify-center items-center gap-3 rounded-md">
@@ -23,7 +23,7 @@ return (
                             >Destiny Armory Manager (D.A.M)</p>
                         </div>
                         <div className="flex flex-col text-start gap-1">
-                            <p className="font-bold">Track your desired weapon rolls and stay ahead of the grind.</p>
+                            <p className="font-bold text-center">Track your desired weapon rolls and stay ahead of the grind.</p>
                             <p>
                                 Save your favorite weapons to a personalized wishlist, search across all weapon types, and view every possible perk combination.
                             </p>
@@ -56,6 +56,7 @@ return (
                                 alt="Step 1 tutorial"
                                 width={500}
                                 height={500}
+                                className="border-2 border-medium rounded"
                             />
                         </div>
                     </li>
@@ -64,7 +65,7 @@ return (
                             <p>Search your desired weapon</p>
                             <Image
                                 src="/images/tutorial-images/step-2.png"
-                                alt="Step 1 tutorial"
+                                alt="Step 2 tutorial"
                                 width={500}
                                 height={500}
                             />
@@ -75,9 +76,9 @@ return (
                             <p>Check its information and select the rolls you want</p>
                             <Image
                                 src="/images/tutorial-images/step-3.png"
-                                alt="Step 2 tutorial"
-                                width={500}
-                                height={500}
+                                alt="Step 3 tutorial"
+                                width={400}
+                                height={400}
                             />
                         </div>
                     </li>
@@ -86,9 +87,10 @@ return (
                             <p>Click "Save roll" to save the combination into the wishlist</p>
                             <Image
                                 src="/images/tutorial-images/step-4.png"
-                                alt="Step 3 tutorial"
+                                alt="Step 4 tutorial"
                                 width={200}
                                 height={200}
+                                className="border-2 border-medium rounded"
                             />
                         </div>
                     </li>
@@ -97,7 +99,7 @@ return (
                             <p>Click in the wish list icon to check all the weapons you are chasing!</p>
                             <Image
                                 src="/icons/wish-list-icon.svg"
-                                alt="Step 4 tutorial"
+                                alt="Step 5 tutorial"
                                 width={30}
                                 height={30}
                             />

@@ -21,10 +21,10 @@ const WeaponBasicInformation = ({ weaponBasicInformation }: WeaponBasicInformati
                 <div className="flex items-center gap-3">
                     <div className="max-w-7 px-1">
                         <img
-                            src={`${bungieBaseUrl}${weaponBasicInformation.damageType.displayProperties.icon}`}
+                            src={`${bungieBaseUrl}${weaponBasicInformation.damageType.icon}`}
                         />
                     </div>
-                    <p>{weaponBasicInformation.damageType.displayProperties.name}</p>
+                    <p>{weaponBasicInformation.damageType.name}</p>
                 </div>
                 {/* Weapon ammo type */}
                 <div className="flex items-center gap-3">

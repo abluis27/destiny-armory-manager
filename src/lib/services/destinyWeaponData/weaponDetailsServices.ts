@@ -1,4 +1,4 @@
-import { WeaponBasicData, WeaponBasicDataWithIcon } from "@/app/types/basicTypes";
+import { WeaponBasicData} from "@/app/types/basicTypes";
 import { WeaponDamageType, WeaponDamageTypeSchema } from "@/app/types/zodSchemasForDatabase/weaponDamageType";
 import { fetchWeaponAmmoTypeById, fetchWeaponDamageTypeById, fetchWeaponRarityById, fetchWeaponStatInfoById, fetchWeaponTypeById } from "./dataFetching";
 import { WeaponStatInfo, WeaponStatInfoSchema } from "@/app/types/zodSchemasForDatabase/weaponStatInfo";
@@ -15,15 +15,14 @@ export const getWeaponTypeById = async (weaponCategories: number[]): Promise<Wea
     };
 }
 
-export const getWeaponAmmoTypeById = async (ammoTypeId: number): Promise<WeaponBasicDataWithIcon> => {
+export const getWeaponAmmoTypeById = async (ammoTypeId: number): Promise<WeaponBasicData> => {
     const resultFetching = await fetchWeaponAmmoTypeById(ammoTypeId)
     return resultFetching
 }
 
-export const getWeaponDamageTypeById = async (damageTypeId: number): Promise<WeaponDamageType> => {
+export const getWeaponDamageTypeById = async (damageTypeId: number): Promise<WeaponBasicData> => {
     const resultFetching = await fetchWeaponDamageTypeById(damageTypeId)
-    const weaponDamageType = JSON.parse(resultFetching.json)
-    return WeaponDamageTypeSchema.parse(weaponDamageType)
+    return resultFetching
 }
 
 export const getWeaponRarityById = async (rarityId: number): Promise<WeaponBasicData> => {

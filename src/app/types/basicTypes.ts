@@ -29,7 +29,7 @@ export type WeaponBasicInfo = {
     hash: number
     flavorText: string
     screenshot: string
-    damageType: WeaponDamageType
+    damageType: WeaponBasicData
     ammoType: WeaponBasicData
     intrinsictPerk: WeaponPerkInfo
 }
@@ -39,7 +39,7 @@ export type SavedRoll = {
     weaponHash: number
     displayProperties: DisplayProperties
     weaponType: WeaponBasicData
-    damageType: WeaponDamageType
+    damageType: WeaponBasicData
     savedPerks: WeaponPerkInfo[]
     ammoType: WeaponBasicData
     iconWatermark: string

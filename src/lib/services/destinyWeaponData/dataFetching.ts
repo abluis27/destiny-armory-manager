@@ -1,4 +1,4 @@
-import { DestinyDefinition, WeaponBasicDataWithIcon, WeaponBasicData } from "@/app/types/basicTypes";
+import { DestinyDefinition, WeaponBasicData } from "@/app/types/basicTypes";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 
@@ -17,7 +17,7 @@ export const fetchWeaponCoreInfoById = async (weaponId: number): Promise<Destiny
 )
 
 
-export const fetchWeaponAmmoTypeById = async (ammoTypeId: number): Promise<WeaponBasicDataWithIcon> => (
+export const fetchWeaponAmmoTypeById = async (ammoTypeId: number): Promise<WeaponBasicData> => (
     db.get(
         sql`SELECT * FROM AmmoType
           WHERE id = ${ammoTypeId}`
@@ -59,9 +59,9 @@ export const fetchWeaponPerkInfoById = async (perkId: number): Promise<DestinyDe
       ) 
 )
 
-export const fetchWeaponDamageTypeById = async (damageTypeId: number): Promise<DestinyDefinition> => (
+export const fetchWeaponDamageTypeById = async (damageTypeId: number): Promise<WeaponBasicData> => (
     db.get(
-        sql`SELECT * FROM DestinyDamageTypeDefinition
+        sql`SELECT * FROM DamageType
           WHERE id = ${damageTypeId}`
       ) 
 )

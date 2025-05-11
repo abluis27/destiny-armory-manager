@@ -15,7 +15,7 @@ export const DestinyWeaponDataSchema = z.object({
   flavorText: z.string(),
   stats: StatsSchema,
   perkPool: PerkPoolSchema,
-  damageType: WeaponDamageTypeSchema,
+  damageType: WeaponBasicDataSchema,
   ammoType: WeaponBasicDataSchema,
   rarity: WeaponBasicDataSchema,
   weaponType: WeaponBasicDataSchema,

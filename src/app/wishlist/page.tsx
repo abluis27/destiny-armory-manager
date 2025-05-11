@@ -15,8 +15,10 @@ export default function WishList() {
     if (savedRolls.length > 0) {
       const filteredWishList = getFilteredWeaponWishList(savedRolls, filterKey);
       setWishList(filteredWishList);
+    } else {
+      setWishList({});
     }
-  }, [savedRolls, filterKey]); // <-- add filterKey here
+  }, [savedRolls, filterKey])
 
 
   const onClickDelete = (wishListId: string) => {
@@ -31,11 +33,16 @@ export default function WishList() {
     <div>
       <div className="py-5 px-7 flex justify-between">
         <p className="text-2xl">Weapon Wishlist</p>
-        <div>
+        <div className="flex gap-5">
           <WislistFilterSelect
             filterKey={filterKey}
             setFilterKey={setFilterKey}
           />
+          <button className="px-5 py-3 rounded-lg 
+          bg-medium-dark border-1 border-light-medium
+          transition duration-300
+          hover:border-red-500"
+          >Clear wishlist</button>
         </div>
       </div>
       {

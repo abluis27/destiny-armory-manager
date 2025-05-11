@@ -10,6 +10,7 @@ const WishListFilterSelect = ({
       value={filterKey}
       onChange={(e) => setFilterKey(e.target.value as WishListFilterKey)}
       className="px-5 py-3 rounded-lg bg-medium-dark border-1 border-light-medium
+      transition duration-300
       hover:border-blue-500"
     >
       <option value="ammoType">Ammo Type</option>

@@ -1,14 +1,7 @@
-import Swal from "sweetalert2";
+import { showConfirmationAlert, showSuccessAlert } from "../(generalComponents)/sweetAlert";
 import WeaponIcon from "../(generalComponents)/WeaponIcon";
 import { WeaponWishListItemProps } from "../interfaces/wishList/WeaponWishListItemProps";
 import PerkSelectorItem from "../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
-
-// I cannot use tailwind classes for the sweet alert modals
-const bgColor = getComputedStyle(document.documentElement)
-.getPropertyValue('--color-medium-dark')
-const textColor = getComputedStyle(document.documentElement)
-.getPropertyValue('--color-off-white')
-
 
 const WeaponWishListItem = ({
     savedRoll,
@@ -16,29 +9,18 @@ const WeaponWishListItem = ({
 }: WeaponWishListItemProps) => {
     const savedPerks = savedRoll.savedPerks
 
-    const onAdquieredRoll = () => {
-        Swal.fire({
-            title: "Roll adquire",
-            text: "This item will be removed from the list.",
-            icon: "warning",
-            color: textColor,
-            background: bgColor,
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Delete item"
-          }).then((result) => {
-            if (result.isConfirmed) {
-                onClickDelete(savedRoll.id)
-                Swal.fire({
-                    title: "Item deleted",
-                    icon: "success",
-                    color: textColor,
-                    background: bgColor
-                });
-            }
-          });
-    }
+const onAdquieredRoll = async () => {
+  const confirmed = await showConfirmationAlert(
+    "Roll Acquired",
+    "This item will be removed from the list."
+  )
+
+  if (confirmed) {
+    onClickDelete(savedRoll.id)
+    showSuccessAlert("Item deleted")
+  }
+}
+
 
     return (
         <div className="bg-medium-dark min-w-90 border-1 border-light-mediumrounded

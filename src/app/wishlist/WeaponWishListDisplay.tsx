@@ -13,7 +13,7 @@ const WeaponWishListDisplay = ({
             <div className="py-5">
                 {/* Group type */}
                 <div className="">
-                    <p className="text-xl">{group}</p>
+                    <p className="text-2xl italic">{group}</p>
                 </div>
                 {/* Content */}
                 <WeaponWishListGroup

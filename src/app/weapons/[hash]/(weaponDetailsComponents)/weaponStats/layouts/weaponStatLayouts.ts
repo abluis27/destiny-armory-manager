@@ -54,8 +54,9 @@ const EXPLOSIVE_WEAPONS_BASIC_STATS = [
     4188031367, // Reload Speed
 ]
 
-export const getWeaponStatLayout = (weaponType: string): WeaponStatLayout => {
+export const getWeaponStatLayout = (weaponType: string, ammoType: string): WeaponStatLayout => {
     const normalizedWeaponType = weaponType.toLowerCase()
+    const normalizedAmmoType = ammoType.toLowerCase()
 
     if(normalizedWeaponType === "bow") {
         return {
@@ -75,7 +76,8 @@ export const getWeaponStatLayout = (weaponType: string): WeaponStatLayout => {
             magazineStats: FUSION_WEAPONS_MAGAZINE_STATS
         }
     }
-    if(normalizedWeaponType.includes("launcher")) {
+    if(normalizedWeaponType.includes("launcher") 
+        || (normalizedWeaponType === "sidearm" && normalizedAmmoType === "special")) {
         return {
             basicStats: EXPLOSIVE_WEAPONS_BASIC_STATS,
             magazineStats: DEFAULT_MAGAZINE_STATS

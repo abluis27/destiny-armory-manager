@@ -99,6 +99,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
           <WeaponStats
             weaponStatValues={weapon.stats}
             weaponType={weapon.weaponType.name}
+            ammoType={weapon.ammoType.name}
           />
           <WeaponPerkSelector
             perkPool={weaponPerkPool ?? []}

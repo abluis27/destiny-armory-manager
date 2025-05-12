@@ -5,8 +5,7 @@ import useStorageState from "@/lib/services/localStorage/useStorageState";
 import { getFilteredWeaponWishList } from "./weaponWishListUtils";
 import WeaponWishListDisplay from "./WeaponWishListDisplay";
 import WislistFilterSelect from "./WishListFilterSelect";
-import Swal from "sweetalert2";
-import { showConfirmationAlert, showInfoAlert, showSuccessAlert } from "../(generalComponents)/sweetAlert";
+import { showAlert, showConfirmationAlert } from "../(generalComponents)/sweetAlert";
 
 export default function WishList() {
   const [savedRolls, setSavedRolls] = useStorageState<SavedRoll[]>("weaponWishlist", []);
@@ -39,12 +38,13 @@ export default function WishList() {
       )
         if (confirmed) {
           setSavedRolls([])
-          showSuccessAlert("Wishlist cleared")
+          showAlert("Wishlist cleared", "", "success")
         }
     } else {
-      showInfoAlert(
+      showAlert(
         "Wishlist Empty",
-        "There is nothing to clear. Start searching for rolls!"
+        "There is nothing to clear. Start searching for rolls!",
+        "info"
       )
     }
   }

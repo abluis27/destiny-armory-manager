@@ -1,10 +1,22 @@
 import Swal from "sweetalert2";
 
+
+// Initialize variables to store colors
+let sweetAlertBgColor = "#000"
+let sweetAlertTextColor = "#fff"
+
 // I cannot use tailwind classes for the sweet alert modals
-const sweetAlertBgColor = getComputedStyle(document.documentElement)
-.getPropertyValue('--color-medium-dark')
-const sweetAlertTextColor = getComputedStyle(document.documentElement)
-.getPropertyValue('--color-off-white')
+// Reason of the typeof window: getComputedStyle is browser-only, and we use these
+// functions during SRR (there's no window or DOM to access)
+
+if (typeof window !== "undefined") {
+  sweetAlertBgColor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-medium-dark');
+  sweetAlertTextColor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-off-white');
+}
+
+type SweetAlertType = "info" | "error" | "success"
 
 export const showConfirmationAlert = async (
   title: string,
@@ -25,23 +37,12 @@ export const showConfirmationAlert = async (
   return result.isConfirmed;
 };
 
-
-export const showSuccessAlert = (title: string) => {
-    if (typeof window === "undefined") return;
-    Swal.fire({
-        title: title,
-        icon: "success",
-        color: sweetAlertTextColor,
-        background: sweetAlertBgColor
-    });
-}
-
-export const showInfoAlert = (title: string, message: string) => {
+export const showAlert = (title: string, message: string, type: SweetAlertType) => {
   if (typeof window === "undefined") return;
   Swal.fire({
     title: title,
     text: message,
-    icon: "info",
+    icon: type,
     color: sweetAlertTextColor,
     background: sweetAlertBgColor,
   });

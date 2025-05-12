@@ -10,6 +10,7 @@ import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponen
 import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInformation";
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
+import { showAlert } from "@/app/(generalComponents)/sweetAlert";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
@@ -68,7 +69,35 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
   }, [weaponPerkPool])
 
   const onCurrentRollSaved = () => {
-    // TODO: display error
+    if(isValidRoll()) {
+      saveCurrentRoll()
+      showAlert(
+        "Roll saved!",
+        "The current weapon roll has been saved into the wishlist",
+        "success"
+      )
+    }
+  }
+
+  const isValidRoll = () => {
+    if(isThereAPerkSelected()) {
+      return true
+    } else {
+      showAlert(
+        "Select one perk",
+        "At least on perk must be selected bedore saving the roll",
+        "info"
+      )
+    }
+    return false
+  }
+
+  const isThereAPerkSelected = () => {
+    return selectedPerks.some(perk => perk.hash !== 0);
+  }
+
+  const saveCurrentRoll = () => {
+        // TODO: display error
     if (!weapon) return;
 
     const newRoll: SavedRoll = {
@@ -83,7 +112,6 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
     }
 
     setWeaponWishlist([...weaponWishlist, newRoll]);
-    alert("Roll saved!")
   }
 
   return (
@@ -111,7 +139,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       </div>
     ) : (
       // Add a gif or something for the loading page (or even a Skeleton)
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center min-h-230">
         <p>Loading data...</p>
       </div>
     )

@@ -1,4 +1,4 @@
-import { showConfirmationAlert, showSuccessAlert } from "../(generalComponents)/sweetAlert";
+import { showAlert, showConfirmationAlert } from "../(generalComponents)/sweetAlert";
 import WeaponIcon from "../(generalComponents)/WeaponIcon";
 import { WeaponWishListItemProps } from "../interfaces/wishList/WeaponWishListItemProps";
 import PerkSelectorItem from "../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
@@ -17,7 +17,7 @@ const onAdquieredRoll = async () => {
 
   if (confirmed) {
     onClickDelete(savedRoll.id)
-    showSuccessAlert("Item deleted")
+    showAlert("Item deleted", "", "success")
   }
 }
 

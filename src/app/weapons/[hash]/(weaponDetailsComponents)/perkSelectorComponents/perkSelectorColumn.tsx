@@ -18,6 +18,7 @@ const PerkSelectorColumn = ({
         const isSelected = selectedPerk?.hash === perk.hash;
         return (
           <PerkSelectorItem
+            key={perk.hash}
             perk={perk}
             isSelected={isSelected}
             onSelect={onSelect}

@@ -13,7 +13,7 @@ const PerkSelectorItem = ({
 
     if (!perkIcon || itemType.includes("Enhanced")) return null;
     return (
-        <div className="relative inline-block">
+        <div className="relative inline-block" key={perk.hash}>
             <div
                 onClick={() => onSelect && onSelect(perk)}
                 className={`relative rounded-full p-1 border-1 border-off-white

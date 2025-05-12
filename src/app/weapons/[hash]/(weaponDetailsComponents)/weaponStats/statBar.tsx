@@ -1,4 +1,4 @@
-import { StatBarProps } from "@/app/interfaces/weaponDetails/perkStats/statBarProps";
+import { StatBarProps } from "@/app/interfaces/weaponDetails/WeaponPerkStatsInterfaces";
 
 const StatBar = ({
     statName,

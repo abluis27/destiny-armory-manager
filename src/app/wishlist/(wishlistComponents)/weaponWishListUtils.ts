@@ -1,4 +1,4 @@
-import { SavedRoll, WeaponWishList, WishListFilterKey } from "../types/basicTypes";
+import { SavedRoll, WeaponWishList, WishListFilterKey } from "../../types/basicTypes";
 
 const filters = {
   ammoType: [

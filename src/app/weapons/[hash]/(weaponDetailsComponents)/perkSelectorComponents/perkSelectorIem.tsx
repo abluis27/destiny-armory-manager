@@ -1,4 +1,4 @@
-import { PerkSelectorItemProps } from "@/app/interfaces/weaponDetails/perkSelector/PerkSelectorItemProps";
+import { PerkSelectorItemProps } from "@/app/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 import { bungieBaseUrl } from "@/lib/utils"
 import { useState } from "react";
 

@@ -1,5 +1,5 @@
 "use client";
-import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsProps";
+import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsInterfaces";
 import { WeaponBasicInfo, SavedRoll } from "@/app/types/basicTypes";
 import { DestinyWeaponData } from "@/app/types/destinyWeaponData";
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
@@ -10,7 +10,7 @@ import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponen
 import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInformation";
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
-import { showAlert } from "@/app/(generalComponents)/sweetAlert";
+import { showAlert } from "@/lib/sweetAlert";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display

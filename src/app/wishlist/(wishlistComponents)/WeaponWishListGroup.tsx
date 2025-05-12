@@ -1,4 +1,4 @@
-import { WeaponWishListGroupProps } from "../interfaces/wishList/WeaponWishListGroupProps"
+import { WeaponWishListGroupProps } from "../../interfaces/wishList/WeaponWishListGroupProps"
 import WeaponWishListItem from "./WeaponWishListItem"
 
 const WeaponWishListGroup = ({

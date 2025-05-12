@@ -1,5 +1,5 @@
 import { bungieBaseUrl } from "@/lib/utils";
-import { WeaponIconProps } from "../interfaces/generalComponents/WeaponIconProps";
+import { WeaponIconProps } from "../interfaces/WeaponIconProps";
 
 const WeaponIcon = ({ icon, iconWatermark, className }: WeaponIconProps) => {
     return (

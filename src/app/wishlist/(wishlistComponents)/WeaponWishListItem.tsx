@@ -1,7 +1,7 @@
-import { showAlert, showConfirmationAlert } from "../(generalComponents)/sweetAlert";
-import WeaponIcon from "../(generalComponents)/WeaponIcon";
-import { WeaponWishListItemProps } from "../interfaces/wishList/WeaponWishListItemProps";
-import PerkSelectorItem from "../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
+import { showAlert, showConfirmationAlert } from "../../../lib/sweetAlert";
+import WeaponIcon from "../../(generalComponents)/WeaponIcon";
+import { WeaponWishListItemProps } from "../../interfaces/wishList/WeaponWishListItemProps";
+import PerkSelectorItem from "../../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
 
 const WeaponWishListItem = ({
     savedRoll,

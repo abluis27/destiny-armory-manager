@@ -1,7 +1,7 @@
-import { WeaponPerkSelectorProps } from "@/app/interfaces/weaponDetails/perkSelector/WeaponPerkSelectorProps ";
 import PerkSelectorColumn from "./perkSelectorColumn"
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
 import { EMPTY_PERK } from "../emptyPerk";
+import { WeaponPerkSelectorProps } from "@/app/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 
 const WeaponPerkSelector = ({ 
     perkPool, selectedPerks, setSelectedPerks
@@ -33,7 +33,7 @@ const WeaponPerkSelector = ({
                                     key={index}
                                     perkPool={perkPool?? []}
                                     selectedPerk={selectedPerks[index]}
-                                    onSelect={(perk) => handlePerkSelect(index, perk)}
+                                    onSelect={(perk: WeaponPerkInfo) => handlePerkSelect(index, perk)}
                                 />
                             )
                         )

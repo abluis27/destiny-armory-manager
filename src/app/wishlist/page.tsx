@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import { SavedRoll, WeaponWishList, WishListFilterKey } from "../types/basicTypes";
 import useStorageState from "@/lib/services/localStorage/useStorageState";
-import { getFilteredWeaponWishList } from "./weaponWishListUtils";
-import WeaponWishListDisplay from "./WeaponWishListDisplay";
-import WislistFilterSelect from "./WishListFilterSelect";
-import { showAlert, showConfirmationAlert } from "../(generalComponents)/sweetAlert";
+import { getFilteredWeaponWishList } from "./(wishlistComponents)/weaponWishListUtils";
+import WeaponWishListDisplay from "./(wishlistComponents)/WeaponWishListDisplay";
+import WislistFilterSelect from "./(wishlistComponents)/WishListFilterSelect";
+import { showAlert, showConfirmationAlert } from "../../lib/sweetAlert";
 
 export default function WishList() {
   const [savedRolls, setSavedRolls] = useStorageState<SavedRoll[]>("weaponWishlist", []);

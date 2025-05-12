@@ -1,4 +1,4 @@
-import { PerkSelectorColumnProps } from "../../../../interfaces/weaponDetails/perkSelector/PerkSelectorColumnProps";
+import { PerkSelectorColumnProps } from "@/app/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 import PerkSelectorItem from "./perkSelectorIem";
 
 const PerkSelectorColumn = ({

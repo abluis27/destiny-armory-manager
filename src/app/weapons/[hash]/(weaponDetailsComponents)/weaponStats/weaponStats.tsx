@@ -1,4 +1,4 @@
-import { WeaponStatsProps } from "../../../../interfaces/weaponDetails/perkStats/WeaponStatsProps"
+import { WeaponStatsProps } from "@/app/interfaces/weaponDetails/WeaponPerkStatsInterfaces"
 import { WEAPON_BASIC_STATS, WEAPON_MAGAZINE_STATS } from "./layouts/weaponStatDetails"
 import { getWeaponStatLayout } from "./layouts/weaponStatLayouts"
 import StatBar from "./statBar"

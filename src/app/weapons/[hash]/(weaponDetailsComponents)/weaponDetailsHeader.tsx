@@ -1,6 +1,5 @@
-import { bungieBaseUrl } from "@/lib/utils"
-import { WeaponDetailsHeaderProps } from "@/app/interfaces/weaponDetails/WeaponDetailsHeaderProps"
 import WeaponIcon from "@/app/(generalComponents)/WeaponIcon"
+import { WeaponDetailsHeaderProps } from "@/app/interfaces/weaponDetails/WeaponDetailsInterfaces"
 
 const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
     return (

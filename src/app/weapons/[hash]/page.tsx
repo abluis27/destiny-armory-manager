@@ -11,6 +11,7 @@ import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInfor
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
 import { showAlert } from "@/lib/sweetAlert";
+import { ScaleLoader } from "react-spinners";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
@@ -40,11 +41,11 @@ const getWeaponBasicInfo = (weapon: DestinyWeaponData): WeaponBasicInfo => {
   } 
 }
 
-  const getComparableRollKey = (savedRoll: SavedRoll) => {
-    const weaponKey = savedRoll.weaponHash.toString()
-    const selectedPerksKey = getSelectedPerksKey(savedRoll.savedPerks)
-    return weaponKey + selectedPerksKey
-  }
+const getComparableRollKey = (savedRoll: SavedRoll) => {
+  const weaponKey = savedRoll.weaponHash.toString()
+  const selectedPerksKey = getSelectedPerksKey(savedRoll.savedPerks)
+  return weaponKey + selectedPerksKey
+}
 
 const getSelectedPerksKey = (selectedPerks: WeaponPerkInfo[]) => {
   let selectedPerksKey = ""
@@ -126,14 +127,13 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
     )
   }
 
-
-const doesRollAlreadyExist = () => {
-  const currentRoll = getCurrentRoll();
-  const currentRollKey = getComparableRollKey(currentRoll);
-  return weaponWishlist.some(savedRoll =>
-    currentRollKey === getComparableRollKey(savedRoll)
-  )
-}
+  const doesRollAlreadyExist = () => {
+    const currentRoll = getCurrentRoll();
+    const currentRollKey = getComparableRollKey(currentRoll);
+    return weaponWishlist.some(savedRoll =>
+      currentRollKey === getComparableRollKey(savedRoll)
+    )
+  }
 
   const saveCurrentRoll = () => {
     const newRoll = getCurrentRoll()
@@ -178,8 +178,13 @@ const doesRollAlreadyExist = () => {
       </div>
     ) : (
       // Add a gif or something for the loading page (or even a Skeleton)
-      <div className="flex justify-center items-center min-h-230">
-        <p>Loading data...</p>
+      <div className="flex flex-col justify-center items-center min-h-230 gap-5">
+        <p className="text-xl">Loading weapon data...</p>
+        <ScaleLoader
+          width={32}
+          height={64}
+          color="#FFFFFF"
+        />
       </div>
     )
   )

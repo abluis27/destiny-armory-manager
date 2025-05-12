@@ -1,4 +1,4 @@
-import { WeaponStatsProps } from "../../../../interfaces/weaponDetails/perkStats/WeaponStatsProps"
+import { WeaponStatsProps } from "@/app/interfaces/weaponDetails/WeaponPerkStatsInterfaces"
 import { WEAPON_BASIC_STATS, WEAPON_MAGAZINE_STATS } from "./layouts/weaponStatDetails"
 import { getWeaponStatLayout } from "./layouts/weaponStatLayouts"
 import StatBar from "./statBar"
@@ -25,6 +25,7 @@ const WeaponStats = ({
                                 const statValue = weaponStatValues.stats[statHash].value
                                 return (
                                     <StatBar
+                                        key={statHash}
                                         statName={statName}
                                         statValue={statValue}
                                     />
@@ -41,7 +42,7 @@ const WeaponStats = ({
                             const statName = WEAPON_MAGAZINE_STATS[statHash]
                             const statValue = weaponStatValues.stats[statHash].value
                             return (
-                                <div className="flex justify-between">
+                                <div className="flex justify-between" key={statHash}>
                                     <p>{statName}</p>
                                     <p>{statValue}</p>
                                 </div>

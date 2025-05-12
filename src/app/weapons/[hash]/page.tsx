@@ -1,5 +1,5 @@
 "use client";
-import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsProps";
+import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsInterfaces";
 import { WeaponBasicInfo, SavedRoll } from "@/app/types/basicTypes";
 import { DestinyWeaponData } from "@/app/types/destinyWeaponData";
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
@@ -10,6 +10,8 @@ import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponen
 import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInformation";
 import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
 import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
+import { showAlert } from "@/lib/sweetAlert";
+import { ScaleLoader } from "react-spinners";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
@@ -38,6 +40,26 @@ const getWeaponBasicInfo = (weapon: DestinyWeaponData): WeaponBasicInfo => {
     intrinsictPerk: weapon.perkPool?.[0]?.[0] ?? EMPTY_PERK
   } 
 }
+
+const getComparableRollKey = (savedRoll: SavedRoll) => {
+  const weaponKey = savedRoll.weaponHash.toString()
+  const selectedPerksKey = getSelectedPerksKey(savedRoll.savedPerks)
+  return weaponKey + selectedPerksKey
+}
+
+const getSelectedPerksKey = (selectedPerks: WeaponPerkInfo[]) => {
+  let selectedPerksKey = ""
+  selectedPerks.forEach(perk => {
+    if (
+      perk.hash !== 0 &&
+      perk.itemTypeDisplayName.toLowerCase() !== "origin trait"
+    ) {
+      selectedPerksKey += perk.hash.toString()
+    }
+  })
+  return selectedPerksKey
+}
+
 
 export default function WeaponDetails({ params }: WeaponDetailsProps) {
   const  { hash } = React.use(params);
@@ -68,22 +90,67 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
   }, [weaponPerkPool])
 
   const onCurrentRollSaved = () => {
-    // TODO: display error
-    if (!weapon) return;
-
-    const newRoll: SavedRoll = {
-      id: crypto.randomUUID(),
-      weaponHash: weapon?.hash,
-      displayProperties: weapon?.displayProperties,
-      weaponType: weapon?.weaponType,
-      damageType: weapon.damageType,
-      savedPerks: selectedPerks,
-      ammoType: weapon.ammoType,
-      iconWatermark: weapon.iconWatermark
+    if(isValidRoll()) {
+      saveCurrentRoll()
+      showAlert(
+        "Roll saved!",
+        "The current weapon roll has been saved into the wishlist",
+        "success"
+      )
     }
+  }
 
+  const isValidRoll = () => {
+    if(!isThereAPerkSelected()) {
+        showAlert(
+        "Select one perk",
+        "At least one perk must be selected before saving the roll, and it cannot be only the Origin Trait.",
+        "info"
+      )
+      return false
+    }
+    if(doesRollAlreadyExist()) {
+      showAlert(
+        "Roll already exist",
+        "There is already a roll in the wishlist with this perk selection",
+        "info"
+      )
+      return false
+    }
+    return true
+  }
+
+  const isThereAPerkSelected = () => {
+    return selectedPerks.some(perk =>
+      perk.hash !== 0 &&
+      perk.itemTypeDisplayName.toLowerCase() !== "origin trait"
+    )
+  }
+
+  const doesRollAlreadyExist = () => {
+    const currentRoll = getCurrentRoll();
+    const currentRollKey = getComparableRollKey(currentRoll);
+    return weaponWishlist.some(savedRoll =>
+      currentRollKey === getComparableRollKey(savedRoll)
+    )
+  }
+
+  const saveCurrentRoll = () => {
+    const newRoll = getCurrentRoll()
     setWeaponWishlist([...weaponWishlist, newRoll]);
-    alert("Roll saved!")
+  }
+
+  const getCurrentRoll = () => {
+    return {
+      id: crypto.randomUUID(),
+      weaponHash: weapon!.hash,
+      displayProperties: weapon!.displayProperties,
+      weaponType: weapon!.weaponType,
+      damageType: weapon!.damageType,
+      savedPerks: selectedPerks,
+      ammoType: weapon!.ammoType,
+      iconWatermark: weapon!.iconWatermark
+    }
   }
 
   return (
@@ -111,8 +178,13 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       </div>
     ) : (
       // Add a gif or something for the loading page (or even a Skeleton)
-      <div className="flex justify-center items-center">
-        <p>Loading data...</p>
+      <div className="flex flex-col justify-center items-center min-h-230 gap-5">
+        <p className="text-xl">Loading weapon data...</p>
+        <ScaleLoader
+          width={32}
+          height={64}
+          color="#FFFFFF"
+        />
       </div>
     )
   )

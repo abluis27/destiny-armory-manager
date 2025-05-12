@@ -1,4 +1,4 @@
-import { PerkSelectorColumnProps } from "../../../../interfaces/weaponDetails/perkSelector/PerkSelectorColumnProps";
+import { PerkSelectorColumnProps } from "@/app/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 import PerkSelectorItem from "./perkSelectorIem";
 
 const PerkSelectorColumn = ({
@@ -18,6 +18,7 @@ const PerkSelectorColumn = ({
         const isSelected = selectedPerk?.hash === perk.hash;
         return (
           <PerkSelectorItem
+            key={perk.hash}
             perk={perk}
             isSelected={isSelected}
             onSelect={onSelect}

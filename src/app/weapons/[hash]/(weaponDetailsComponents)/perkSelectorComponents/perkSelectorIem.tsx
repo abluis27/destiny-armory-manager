@@ -1,4 +1,4 @@
-import { PerkSelectorItemProps } from "@/app/interfaces/weaponDetails/perkSelector/PerkSelectorItemProps";
+import { PerkSelectorItemProps } from "@/app/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 import { bungieBaseUrl } from "@/lib/utils"
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ const PerkSelectorItem = ({
 
     if (!perkIcon || itemType.includes("Enhanced")) return null;
     return (
-        <div className="relative inline-block">
+        <div className="relative inline-block" key={perk.hash}>
             <div
                 onClick={() => onSelect && onSelect(perk)}
                 className={`relative rounded-full p-1 border-1 border-off-white

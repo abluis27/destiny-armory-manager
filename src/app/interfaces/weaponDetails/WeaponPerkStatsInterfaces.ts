@@ -6,3 +6,9 @@ export interface WeaponStatsProps {
     weaponType: string
     intrinsicPerk: WeaponPerkInfo
 }
+
+export interface StatBarProps {
+    key: number
+    statName: string
+    statValue: number
+}

@@ -1,5 +1,5 @@
+import { WeaponBasicInformationProps } from "@/app/interfaces/weaponDetails/WeaponDetailsInterfaces"
 import { bungieBaseUrl } from "@/lib/utils"
-import { WeaponBasicInformationProps } from "@/app/interfaces/weaponDetails/WeaponBasicInformationProps"
 
 const WeaponBasicInformation = ({ weaponBasicInformation }: WeaponBasicInformationProps) => {
     return (

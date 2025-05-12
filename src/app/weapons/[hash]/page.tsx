@@ -40,6 +40,26 @@ const getWeaponBasicInfo = (weapon: DestinyWeaponData): WeaponBasicInfo => {
   } 
 }
 
+  const getComparableRollKey = (savedRoll: SavedRoll) => {
+    const weaponKey = savedRoll.weaponHash.toString()
+    const selectedPerksKey = getSelectedPerksKey(savedRoll.savedPerks)
+    return weaponKey + selectedPerksKey
+  }
+
+const getSelectedPerksKey = (selectedPerks: WeaponPerkInfo[]) => {
+  let selectedPerksKey = ""
+  selectedPerks.forEach(perk => {
+    if (
+      perk.hash !== 0 &&
+      perk.itemTypeDisplayName.toLowerCase() !== "origin trait"
+    ) {
+      selectedPerksKey += perk.hash.toString()
+    }
+  })
+  return selectedPerksKey
+}
+
+
 export default function WeaponDetails({ params }: WeaponDetailsProps) {
   const  { hash } = React.use(params);
   const [weapon, setWeapon] = useState<DestinyWeaponData | null>(null)
@@ -80,38 +100,57 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
   }
 
   const isValidRoll = () => {
-    if(isThereAPerkSelected()) {
-      return true
-    } else {
-      showAlert(
+    if(!isThereAPerkSelected()) {
+        showAlert(
         "Select one perk",
-        "At least on perk must be selected bedore saving the roll",
+        "At least one perk must be selected before saving the roll, and it cannot be only the Origin Trait.",
         "info"
       )
+      return false
     }
-    return false
+    if(doesRollAlreadyExist()) {
+      showAlert(
+        "Roll already exist",
+        "There is already a roll in the wishlist with this perk selection",
+        "info"
+      )
+      return false
+    }
+    return true
   }
 
   const isThereAPerkSelected = () => {
-    return selectedPerks.some(perk => perk.hash !== 0);
+    return selectedPerks.some(perk =>
+      perk.hash !== 0 &&
+      perk.itemTypeDisplayName.toLowerCase() !== "origin trait"
+    )
   }
 
+
+const doesRollAlreadyExist = () => {
+  const currentRoll = getCurrentRoll();
+  const currentRollKey = getComparableRollKey(currentRoll);
+  return weaponWishlist.some(savedRoll =>
+    currentRollKey === getComparableRollKey(savedRoll)
+  )
+}
+
   const saveCurrentRoll = () => {
-        // TODO: display error
-    if (!weapon) return;
-
-    const newRoll: SavedRoll = {
-      id: crypto.randomUUID(),
-      weaponHash: weapon?.hash,
-      displayProperties: weapon?.displayProperties,
-      weaponType: weapon?.weaponType,
-      damageType: weapon.damageType,
-      savedPerks: selectedPerks,
-      ammoType: weapon.ammoType,
-      iconWatermark: weapon.iconWatermark
-    }
-
+    const newRoll = getCurrentRoll()
     setWeaponWishlist([...weaponWishlist, newRoll]);
+  }
+
+  const getCurrentRoll = () => {
+    return {
+      id: crypto.randomUUID(),
+      weaponHash: weapon!.hash,
+      displayProperties: weapon!.displayProperties,
+      weaponType: weapon!.weaponType,
+      damageType: weapon!.damageType,
+      savedPerks: selectedPerks,
+      ammoType: weapon!.ammoType,
+      iconWatermark: weapon!.iconWatermark
+    }
   }
 
   return (

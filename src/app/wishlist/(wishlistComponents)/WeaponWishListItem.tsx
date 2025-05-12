@@ -1,7 +1,8 @@
 import { showAlert, showConfirmationAlert } from "../../../lib/sweetAlert";
 import WeaponIcon from "../../(generalComponents)/WeaponIcon";
-import { WeaponWishListItemProps } from "../../interfaces/wishList/WeaponWishListItemProps";
 import PerkSelectorItem from "../../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
+import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
+import { WeaponWishListItemProps } from "@/app/interfaces/WislistInterfaces";
 
 const WeaponWishListItem = ({
     savedRoll,
@@ -49,7 +50,7 @@ const onAdquieredRoll = async () => {
             <div className="flex items-center justify-center gap-5 py-4">
                 {
                     (
-                        savedPerks.map(perk => 
+                        savedPerks.map((perk: WeaponPerkInfo) => 
                             <PerkSelectorItem perk={perk}/>)
                     )
                 }   

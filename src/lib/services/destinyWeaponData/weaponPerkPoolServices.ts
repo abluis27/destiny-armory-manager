@@ -1,9 +1,9 @@
 import { Sockets, SocketEntry } from "@/app/types/zodSchemasForDatabase/weaponCoreInfo"
-import { WeaponPerkInfo, WeaponPerkInfoSchema } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
+import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
 import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "@/app/types/zodSchemasForDatabase/weaponPlugSet"
 import { toSignedInt32 } from "@/lib/utils"
 import { fetchWeaponPerkInfoFromApiById } from "./bungieApi/destinyInventoryDefinitionItem"
-import { fetchWeaponPerkPooHasheslById, fetchWeaponPerkInfoById } from "./dataFetching"
+import { fetchWeaponPerkPooHasheslById } from "./dataFetching"
 
 export const getWeaponPerkPoolsInfoFromSockets = async (sockets: Sockets) => {
     const weaponPerkPool = await getWeaponPerkPoolByHash(sockets)
@@ -13,41 +13,55 @@ export const getWeaponPerkPoolsInfoFromSockets = async (sockets: Sockets) => {
             return perkPoolInfo
         })
     )
-    return weaponPerkPoolsInfo
+    const weaponPerkPoolData = filterWeaponPerkPool(weaponPerkPoolsInfo)
+    return weaponPerkPoolData
 }
 
-// Asigna cada perk con su informacion
-const getWeaponPerkpoolWithInfo = async (perkHashes: WeaponPerkPoolHashes | undefined) => {
-    if(perkHashes != undefined) {
-        const perkPoolInfo = Promise.all(
-            perkHashes?.reusablePlugItems.map(async perkHash => {      
-                const perkInfo = await fetchWeaponPerkInfoFromApiById(perkHash.plugItemHash)
-                return perkInfo
-            })
-        )
-        return perkPoolInfo
+const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][] | undefined) => {
+    if(perkPool === undefined) {
+        return perkPool
     }
-}
 
-// Asignar a cada PerkPoolHash su corresponsiente PerkPool
- const getWeaponPerkPoolByHash = async (sockets: Sockets) => {
-    const weaponPerkPoolsHashes = getWeaponPerkPoolsHashes(sockets)
-    const weaponPerkPool = await Promise.all(
-        weaponPerkPoolsHashes.map(perkPool => {
-            if (perkPool.randomizedPlugSetHash !== undefined) {
-                return getWeaponPerkPoolById(
-                   toSignedInt32(perkPool.randomizedPlugSetHash)
-                )
-            } if(perkPool.reusablePlugSetHash !== undefined) {
-                return getWeaponPerkPoolById(
-                    toSignedInt32(perkPool.reusablePlugSetHash)
-                )
-            }
-            return undefined
+    return perkPool.filter(perkColumn =>
+        (perkColumn ?? []).some(
+            perk => {
+                const name = perk.displayProperties.name.toLowerCase()
+                return !name.includes("tracker")
         })
     )
-    return weaponPerkPool
 }
+
+// Join perk hash with its information
+const getWeaponPerkpoolWithInfo = async (perkHashes: WeaponPerkPoolHashes) => {
+  const perkPoolInfo = await Promise.all(
+    perkHashes.reusablePlugItems.map(async perkHash => {      
+      const perkInfo = await fetchWeaponPerkInfoFromApiById(perkHash.plugItemHash);
+      return perkInfo;
+    })
+  )
+  return perkPoolInfo
+};
+
+
+// Join the perk pool hash with its perk pool
+const getWeaponPerkPoolByHash = async (sockets: Sockets) => {
+  const weaponPerkPoolsHashes = getWeaponPerkPoolsHashes(sockets)
+  const weaponPerkPool = await Promise.all(
+    weaponPerkPoolsHashes.map(perkPool => {
+        // One of these ALWAYS is going to exists
+      if (perkPool.randomizedPlugSetHash !== undefined) {
+        return getWeaponPerkPoolById(toSignedInt32(perkPool.randomizedPlugSetHash))
+      } else if (perkPool.reusablePlugSetHash !== undefined) {
+        return getWeaponPerkPoolById(toSignedInt32(perkPool.reusablePlugSetHash))
+      }
+      return null
+    })
+  )
+
+  // Filter out nulls
+  return weaponPerkPool.filter((p): p is WeaponPerkPoolHashes => p !== null)
+}
+
 
 // Base on the indexes we can filter the perk pools that we want to get
 // 0 -> Intrinsic perk
@@ -65,11 +79,3 @@ const getWeaponPerkPoolById = async (perkPoolId: number): Promise<WeaponPerkPool
     const unparsedPlugSet = JSON.parse(resultFetching.json)
     return WeaponPerkPoolHashesSchema.parse(unparsedPlugSet)
 }
-
-// Unused until fixing perk db
-const getWeaponPerkInfoById = async (perkId: number): Promise<WeaponPerkInfo> => {
-    const resultFetching = await fetchWeaponPerkInfoById(perkId)
-    const unparsedPerkInfo = JSON.parse(resultFetching.json)
-    return WeaponPerkInfoSchema.parse(unparsedPerkInfo)
-}
-

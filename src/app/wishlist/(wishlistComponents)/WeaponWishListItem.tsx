@@ -1,27 +1,25 @@
-import { showAlert, showConfirmationAlert } from "../../../lib/sweetAlert";
-import WeaponIcon from "../../(generalComponents)/WeaponIcon";
-import PerkSelectorItem from "../../weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
 import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
 import { WeaponWishListItemProps } from "@/app/interfaces/WislistInterfaces";
+import WeaponIcon from "@/app/(generalComponents)/WeaponIcon";
+import PerkSelectorItem from "@/app/weapons/[hash]/(weaponDetailsComponents)/perkSelectorComponents/perkSelectorIem";
+import { showConfirmationAlert, showAlert } from "@/lib/sweetAlert";
 
 const WeaponWishListItem = ({
     savedRoll,
     onClickDelete
 }: WeaponWishListItemProps) => {
     const savedPerks = savedRoll.savedPerks
+    const onAdquieredRoll = async () => {
+        const confirmed = await showConfirmationAlert(
+            "Roll Acquired",
+            "This item will be removed from the list."
+        )
 
-const onAdquieredRoll = async () => {
-  const confirmed = await showConfirmationAlert(
-    "Roll Acquired",
-    "This item will be removed from the list."
-  )
-
-  if (confirmed) {
-    onClickDelete(savedRoll.id)
-    showAlert("Item deleted", "", "success")
-  }
-}
-
+        if (confirmed) {
+            onClickDelete(savedRoll.id)
+            showAlert("Item deleted", "", "success")
+        }
+    }
 
     return (
         <div className="bg-medium-dark min-w-90 border-1 border-light-mediumrounded
@@ -51,7 +49,7 @@ const onAdquieredRoll = async () => {
                 {
                     (
                         savedPerks.map((perk: WeaponPerkInfo) => 
-                            <PerkSelectorItem perk={perk}/>)
+                            <PerkSelectorItem key={perk.hash} perk={perk}/>)
                     )
                 }   
             </div>

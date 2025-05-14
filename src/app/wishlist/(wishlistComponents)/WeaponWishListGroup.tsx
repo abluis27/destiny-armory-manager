@@ -1,4 +1,4 @@
-import { WeaponWishListGroupProps } from "../../interfaces/wishList/WeaponWishListGroupProps"
+import { WeaponWishListGroupProps } from "@/app/interfaces/WislistInterfaces"
 import WeaponWishListItem from "./WeaponWishListItem"
 
 const WeaponWishListGroup = ({
@@ -11,6 +11,7 @@ const WeaponWishListGroup = ({
                 (
                     savedRolls.map(savedRoll => {
                         return <WeaponWishListItem
+                            key={savedRoll.id}
                             savedRoll={savedRoll}
                             onClickDelete={onClickDelete}
                         />

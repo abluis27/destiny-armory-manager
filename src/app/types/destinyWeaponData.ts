@@ -2,7 +2,6 @@ import * as z from "zod";
 import { DisplayPropertiesSchema } from "./zodSchemasForDatabase/commonSchemas";
 import { StatsSchema } from "./zodSchemasForDatabase/weaponCoreInfo";
 import { WeaponPerkInfoSchema } from "./zodSchemasForDatabase/weaponPerkInfo";
-import { WeaponDamageTypeSchema } from "./zodSchemasForDatabase/weaponDamageType";
 import { WeaponBasicDataSchema } from "./basicTypes";
 
 export const PerkPoolSchema = z.array(z.array(WeaponPerkInfoSchema).optional());

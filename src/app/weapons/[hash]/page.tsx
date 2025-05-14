@@ -15,18 +15,8 @@ import { ScaleLoader } from "react-spinners";
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
-  // in the "WeaponBasicInfo" component
-  // We filter out the kill trackers, they are useless here
-  const weaponPerkPool = perkPool
-      .slice(1) // Remove intrinsic perk.
-      .filter(perkColumn =>
-      // Filter out the kil tracker perks.
-      (perkColumn ?? []).some(
-          perk => {
-              const name = perk.displayProperties.name.toLowerCase();
-              return !name.includes("tracker");
-      })
-  );
+  // in the other component
+  const weaponPerkPool = perkPool.slice(1)
   return weaponPerkPool;
 }
 
@@ -160,7 +150,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
           weapon={weapon}
           onSaved={onCurrentRollSaved}
         />
-        <div className="flex justify-center items-start py-10 gap-17">
+        <div className="min-h-200 flex justify-center items-start py-10 gap-17">
           <WeaponStats
             weaponStatValues={weapon.stats}
             weaponType={weapon.weaponType.name}
@@ -177,7 +167,6 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
         </div>
       </div>
     ) : (
-      // Add a gif or something for the loading page (or even a Skeleton)
       <div className="flex flex-col justify-center items-center min-h-230 gap-5">
         <p className="text-xl">Loading weapon data...</p>
         <ScaleLoader

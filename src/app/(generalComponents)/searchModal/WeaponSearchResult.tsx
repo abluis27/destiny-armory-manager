@@ -9,7 +9,7 @@ interface WeaponSearchResultProps {
 
 const WeaponSearchResult = ({ weaponPreviewInfo, setIsOpen }: WeaponSearchResultProps) => {
     return (
-      <div key={weaponPreviewInfo.hash}>
+      <div>
         <Link href={`/weapons/${weaponPreviewInfo.hash}`}
         className="py-1 w-full flex uppercase"
         onClick={() => setIsOpen(false)}>

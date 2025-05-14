@@ -1,9 +1,8 @@
 import { Sockets, SocketEntry } from "@/app/types/zodSchemasForDatabase/weaponCoreInfo"
-import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
+import { WeaponPerkInfo, WeaponPerkInfoSchema } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
 import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "@/app/types/zodSchemasForDatabase/weaponPlugSet"
 import { toSignedInt32 } from "@/lib/utils"
-import { fetchWeaponPerkInfoFromApiById } from "./bungieApi/destinyInventoryDefinitionItem"
-import { fetchWeaponPerkPooHasheslById } from "./dataFetching"
+import { fetchWeaponPerkInfoById, fetchWeaponPerkPooHasheslById } from "./dataFetching"
 
 export const getWeaponPerkPoolsInfoFromSockets = async (sockets: Sockets) => {
     const weaponPerkPool = await getWeaponPerkPoolByHash(sockets)
@@ -34,13 +33,21 @@ const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][] | undefined) => {
 // Join perk hash with its information
 const getWeaponPerkpoolWithInfo = async (perkHashes: WeaponPerkPoolHashes) => {
   const perkPoolInfo = await Promise.all(
-    perkHashes.reusablePlugItems.map(async perkHash => {      
-      const perkInfo = await fetchWeaponPerkInfoFromApiById(perkHash.plugItemHash);
+    perkHashes.reusablePlugItems.map(async perkHash => {
+      const signedPerkHash = toSignedInt32(perkHash.plugItemHash)
+      const perkInfo = await getWeaponPerkInfoById(signedPerkHash);
       return perkInfo;
     })
   )
   return perkPoolInfo
 };
+
+
+const getWeaponPerkInfoById = async (hash: number) => {
+  const resultFetching = await fetchWeaponPerkInfoById(hash)
+  const unparsedPerkInfo = JSON.parse(resultFetching.json)
+  return WeaponPerkInfoSchema.parse(unparsedPerkInfo)
+}
 
 
 // Join the perk pool hash with its perk pool

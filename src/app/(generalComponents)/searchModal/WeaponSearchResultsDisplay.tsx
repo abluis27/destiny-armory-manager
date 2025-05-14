@@ -1,5 +1,6 @@
 import { WeaponPreviewInfo } from "@/app/types/zodSchemasForDatabase/weaponPreviewInfo"
 import WeaponSearchResult from "./WeaponSearchResult";
+import SearchModalMessage from "./searchModalMessage";
 
 interface WeaponSearchResultDisplayProps {
     searchResults: WeaponPreviewInfo[]
@@ -32,9 +33,9 @@ const WeaponSearchResultDisplay =  ({
                 }
               </div>
             ) : (
-              <div className="h-full flex justify-center items-center py-3">
-                <p>Start typing to see results!</p>
-              </div>
+                <SearchModalMessage 
+                    message="Start typing to see results!"
+                />
             )
           }
         </div>)

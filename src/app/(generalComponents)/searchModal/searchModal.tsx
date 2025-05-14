@@ -4,14 +4,15 @@ import { useDebouncedCallback } from "use-debounce";
 import { WeaponPreviewInfo } from '../../types/zodSchemasForDatabase/weaponPreviewInfo';
 import WeaponSearchResult from './WeaponSearchResult';
 import WeaponSearchResultDisplay from './WeaponSearchResultsDisplay';
+import SearchModalMessage from './searchModalMessage';
 
 interface SearchModalProps {
-  isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
+const SearchModal = ({ setIsOpen }: SearchModalProps) => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [searchError, setSearchError] = useState("")
   const [searchResults, setSearchResults] = useState<WeaponPreviewInfo[]>([])
 
   const handleSearch = async (query: string) => {
@@ -29,15 +30,15 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
       const response = await fetch(
         `/api/weapons/preview?name=${encodeURIComponent(query)}`
       )
-      const weaponsPreviewInfo: WeaponPreviewInfo[] = await response.json()
-      if(response.ok) {
-        setSearchResults(sortResults(weaponsPreviewInfo))
-        console.log(weaponsPreviewInfo)
+      handleApiResponse(response)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const errorMessage = error.message
+        console.log("API ERROR:", errorMessage);
+        setSearchError(errorMessage)
       } else {
-        setSearchResults([])
+        console.log("Unexpected error:", error);
       }
-    } catch (error) {
-      console.log("API ERROR: ", error)
     }
   }, 300)
 
@@ -45,6 +46,24 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
     return weapons
       .sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
   };
+
+  const handleApiResponse = async (response: Response) => {
+    if(response.ok) {
+      setSearchError("")
+      const weaponsPreviewInfo: WeaponPreviewInfo[] = await response.json()
+      setSearchResults(sortResults(weaponsPreviewInfo))
+    } else {
+      setSearchResults([])
+      handleError(response)
+    }
+  }
+
+  const handleError = async (response: Response) => {
+    const error = await response.json();
+    if(response.status === 404) {
+      setSearchError(error.error);
+    }
+  }
   
   return (
     // Semi transparent background
@@ -82,10 +101,16 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
         </div>
 
         {/* Displaying the search results */}
-        <WeaponSearchResultDisplay
-          searchResults={searchResults}
-          setIsOpen={setIsOpen}
-        />
+        {
+          searchError ? (
+            <SearchModalMessage message={searchError} />
+        ) : (
+          <WeaponSearchResultDisplay
+            searchResults={searchResults}
+            setIsOpen={setIsOpen}
+          />
+        )
+        }
       </div >
     </div>
   );

@@ -55,7 +55,6 @@ const Header = () => {
     </header>
       {isSearchModelOpen && (
         <SearchModal
-          isOpen={isSearchModelOpen}
           setIsOpen={setIsSearchModelOpen}
         />
       )}

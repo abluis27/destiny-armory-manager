@@ -16,6 +16,16 @@ export const GET = async (req: NextRequest) => {
 
     try {
         const results = await getDestinyWeaponsPreviewDataByName(weaponName)
+        if(results.length <= 0) {
+        return NextResponse.json(
+            {
+                error: `The weapon with the name ${weaponName} does not exists`
+            },
+            {
+                status: 404
+            }
+        )
+        }
         return NextResponse.json(results)
     } catch (error) {
         console.error('Failed to fetch preview data:', error);

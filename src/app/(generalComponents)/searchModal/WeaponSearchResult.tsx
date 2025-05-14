@@ -11,7 +11,8 @@ const WeaponSearchResult = ({ weaponPreviewInfo, setIsOpen }: WeaponSearchResult
     return (
       <div>
         <Link href={`/weapons/${weaponPreviewInfo.hash}`}
-        className="py-1 w-full flex uppercase"
+        className="p-1 w-full flex uppercase
+        hover:bg-darkest/25"
         onClick={() => setIsOpen(false)}>
           <WeaponIcon
             icon={weaponPreviewInfo.displayProperties.icon}

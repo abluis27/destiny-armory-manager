@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { WeaponPreviewInfo } from "../../types/zodSchemasForDatabase/weaponPreviewInfo";
-import { bungieBaseUrl } from "@/lib/utils";
 import WeaponIcon from "../WeaponIcon";
 
-interface WeaponPreviewProps {
+interface WeaponSearchResultProps {
     weaponPreviewInfo: WeaponPreviewInfo;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const WeaponPreview = ({ weaponPreviewInfo, setIsOpen }: WeaponPreviewProps) => {
+const WeaponSearchResult = ({ weaponPreviewInfo, setIsOpen }: WeaponSearchResultProps) => {
     return (
       <div key={weaponPreviewInfo.hash}>
         <Link href={`/weapons/${weaponPreviewInfo.hash}`}
@@ -28,4 +27,4 @@ const WeaponPreview = ({ weaponPreviewInfo, setIsOpen }: WeaponPreviewProps) => 
     )
 }
 
-export default WeaponPreview
+export default WeaponSearchResult

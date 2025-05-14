@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useDebouncedCallback } from "use-debounce";
 import { WeaponPreviewInfo } from '../../types/zodSchemasForDatabase/weaponPreviewInfo';
-import WeaponPreview from './weaponPreview';
+import WeaponSearchResult from './WeaponSearchResult';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -92,7 +92,7 @@ const SearchModal = ({ isOpen, setIsOpen }: SearchModalProps) => {
                 {
                   (
                     searchResults.map(weapon =>
-                      <WeaponPreview
+                      <WeaponSearchResult
                         weaponPreviewInfo={weapon}
                         setIsOpen={setIsOpen}
                       />

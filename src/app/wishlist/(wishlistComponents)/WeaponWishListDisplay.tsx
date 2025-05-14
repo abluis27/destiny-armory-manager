@@ -1,4 +1,4 @@
-import { WeaponWishListProps } from "../../interfaces/wishList/WeaponWishListProps"
+import { WeaponWishListProps } from "@/app/interfaces/WislistInterfaces"
 import WeaponWishListGroup from "./WeaponWishListGroup"
 
 const WeaponWishListDisplay = ({
@@ -10,7 +10,7 @@ const WeaponWishListDisplay = ({
       {Object.entries(wishList).map(([group, savedRolls]) => {
         if(savedRolls.length <= 0) return null
         return (
-            <div className="py-5">
+            <div className="py-5" key={group}>
                 {/* Group type */}
                 <div className="">
                     <p className="text-2xl italic">{group}</p>

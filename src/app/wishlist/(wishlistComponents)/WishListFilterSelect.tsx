@@ -1,5 +1,5 @@
+import { WishListFilterSelectProps } from "@/app/interfaces/WislistInterfaces";
 import { WishListFilterKey } from "@/app/types/basicTypes";
-import { WishListFilterSelectProps } from "../../interfaces/wishList/WishlistFilterSelectProps";
 
 const WishListFilterSelect = ({
   filterKey,

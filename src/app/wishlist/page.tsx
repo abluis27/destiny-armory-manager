@@ -8,27 +8,32 @@ import WislistFilterSelect from "./(wishlistComponents)/WishListFilterSelect";
 import { showAlert, showConfirmationAlert } from "../../lib/sweetAlert";
 
 export default function WishList() {
+  const [isClient, setIsClient] = useState(false);
   const [savedRolls, setSavedRolls] = useStorageState<SavedRoll[]>("weaponWishlist", []);
   const [filterKey, setFilterKey] = useState<WishListFilterKey>("ammoType")
   const [wishList, setWishList] = useState<WeaponWishList>({})
+
+  useEffect(() => {
+    setIsClient(true) // Once the pageis in the client
+  }, [])
   
   useEffect(() => {
     if (savedRolls.length > 0) {
       const filteredWishList = getFilteredWeaponWishList(savedRolls, filterKey);
-      setWishList(filteredWishList);
+      setWishList(filteredWishList)
     } else {
-      setWishList({});
+      setWishList({})
     }
   }, [savedRolls, filterKey])
 
 
   const onClickDelete = (wishListId: string) => {
     const updatedRolls = savedRolls.filter(roll => roll.id !== wishListId);
-    setSavedRolls(updatedRolls);
+    setSavedRolls(updatedRolls)
   
     const updatedWishList = getFilteredWeaponWishList(updatedRolls, filterKey);
-    setWishList(updatedWishList);
-  };
+    setWishList(updatedWishList)
+  }
 
   const onClearWishlist = async () => {
     if (savedRolls.length > 0) {
@@ -48,6 +53,9 @@ export default function WishList() {
       )
     }
   }
+
+   // Only render after client is ready
+  if (!isClient) return null;
 
   return (
     <div>

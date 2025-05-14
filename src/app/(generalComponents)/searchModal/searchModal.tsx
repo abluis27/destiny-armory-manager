@@ -42,11 +42,6 @@ const SearchModal = ({ setIsOpen }: SearchModalProps) => {
     }
   }, 300)
 
-  const sortResults = (weapons: WeaponPreviewInfo[]) => {
-    return weapons
-      .sort((a, b) => a.displayProperties.name.localeCompare(b.displayProperties.name));
-  };
-
   const handleApiResponse = async (response: Response) => {
     if(response.ok) {
       setSearchError("")
@@ -56,6 +51,12 @@ const SearchModal = ({ setIsOpen }: SearchModalProps) => {
       setSearchResults([])
       handleError(response)
     }
+  }
+
+  const sortResults = (weapons: WeaponPreviewInfo[]) => {
+    return weapons
+      .sort((a, b) => 
+        a.displayProperties.name.localeCompare(b.displayProperties.name))
   }
 
   const handleError = async (response: Response) => {

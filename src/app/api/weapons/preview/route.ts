@@ -19,7 +19,7 @@ export const GET = async (req: NextRequest) => {
         if(results.length <= 0) {
         return NextResponse.json(
             {
-                error: `The weapon with the name ${weaponName} does not exists`
+                error: `No results found for ${weaponName}. Please check the spelling or try a different search term.`
             },
             {
                 status: 404

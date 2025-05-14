@@ -53,11 +53,15 @@ const getSelectedPerksKey = (selectedPerks: WeaponPerkInfo[]) => {
 
 export default function WeaponDetails({ params }: WeaponDetailsProps) {
   const  { hash } = React.use(params);
+  const [isClient, setIsClient] = useState(false)
   const [weapon, setWeapon] = useState<DestinyWeaponData | null>(null)
   const [weaponPerkPool, setWeaponPerkPool] = useState<WeaponPerkInfo[][]>()
-  const [selectedPerks, setSelectedPerks] = useState<WeaponPerkInfo[]>([]);
-  const [weaponWishlist, setWeaponWishlist] = useStorageState<SavedRoll[]>("weaponWishlist", []);
+  const [selectedPerks, setSelectedPerks] = useState<WeaponPerkInfo[]>([])
+  const [weaponWishlist, setWeaponWishlist] = useStorageState<SavedRoll[]>("weaponWishlist", [])
 
+  useEffect(() => {
+    setIsClient(true)
+  }, []);
   
   useEffect(() => {
     const getDestinyWeaponData = async () => {
@@ -142,7 +146,8 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
       iconWatermark: weapon!.iconWatermark
     }
   }
-
+    
+  if (!isClient) return null
   return (
     weapon ? (
       <div>

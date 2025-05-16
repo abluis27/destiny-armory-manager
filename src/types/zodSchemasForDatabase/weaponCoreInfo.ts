@@ -40,10 +40,10 @@ export const SocketsSchema = z.object({
 
 export type Sockets = z.infer<typeof SocketsSchema>;
 
-export const StatsSchema = z.object({
+export const WeaponStatsDefinitionSchema = z.object({
     "stats": z.record(z.string(), StatSchema),
 });
-export type WeaponStats = z.infer<typeof StatsSchema>;
+export type WeaponStatsDefinition = z.infer<typeof WeaponStatsDefinitionSchema>;
 
 export const WeaponCoreInfoWithoutIdSchema = z.object({
     "displayProperties": DisplayPropertiesSchema,
@@ -51,7 +51,7 @@ export const WeaponCoreInfoWithoutIdSchema = z.object({
     "screenshot": z.string(),
     "flavorText": z.string(),
     "inventory": InventorySchema,
-    "stats": StatsSchema,
+    "stats": WeaponStatsDefinitionSchema,
     "equippingBlock": EquippingBlockSchema,
     "sockets": SocketsSchema,
     "itemCategoryHashes": z.array(z.number()),

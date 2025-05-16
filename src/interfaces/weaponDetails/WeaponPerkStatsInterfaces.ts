@@ -1,10 +1,7 @@
-import { WeaponStats } from "@/types/zodSchemasForDatabase/weaponCoreInfo";
-import { WeaponPerkInfo } from "@/types/zodSchemasForDatabase/weaponPerkInfo";
+import { WeaponStatsInfo } from "@/types/zodSchemasForDatabase/weaponStatsInfo";
 
 export interface WeaponStatsProps {
-    weaponStatValues: WeaponStats
-    weaponType: string
-    intrinsicPerk: WeaponPerkInfo
+    weaponStatsInfo: WeaponStatsInfo
 }
 
 export interface StatBarProps {

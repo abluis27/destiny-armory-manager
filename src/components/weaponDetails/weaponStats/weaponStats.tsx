@@ -1,14 +1,10 @@
 import { WeaponStatsProps } from "@/interfaces/weaponDetails/WeaponPerkStatsInterfaces"
-import { WEAPON_BASIC_STATS, WEAPON_MAGAZINE_STATS } from "./layouts/weaponStatDetails"
-import { getWeaponStatLayout } from "./layouts/weaponStatLayouts"
 import StatBar from "./statBar"
+import { WeaponStatInfo } from "@/types/zodSchemasForDatabase/weaponStatsInfo"
 
 const WeaponStats = ({ 
-    weaponStatValues,
-    weaponType,
-    intrinsicPerk
+    weaponStatsInfo
  }: WeaponStatsProps) => {
-    const weaponStatLayout = getWeaponStatLayout(weaponType, intrinsicPerk)
 
     return (
         <div className="bg-medium-dark rounded-sm min-w-90 border-1 border-medium">
@@ -20,17 +16,14 @@ const WeaponStats = ({
                 <div className="flex flex-col gap-4">
                     {
                         (
-                            weaponStatLayout.basicStats.map(statHash => {
-                                const statName = WEAPON_BASIC_STATS[statHash]
-                                const statValue = weaponStatValues.stats[statHash].value
-                                return (
+                            weaponStatsInfo.basicStats.map((stat: WeaponStatInfo) => (
                                     <StatBar
-                                        key={statHash}
-                                        statName={statName}
-                                        statValue={statValue}
+                                        key={stat.hash}
+                                        statName={stat.name}
+                                        statValue={stat.value}
                                     />
-                                );
-                            })
+                                )
+                            )
                         )
                     }
                 </div>
@@ -38,16 +31,13 @@ const WeaponStats = ({
                 <div className="flex flex-col gap-3 border-t-1 border-off-white pt-5">
                    {
                     (
-                        weaponStatLayout.magazineStats.map(statHash => {
-                            const statName = WEAPON_MAGAZINE_STATS[statHash]
-                            const statValue = weaponStatValues.stats[statHash].value
-                            return (
-                                <div className="flex justify-between" key={statHash}>
-                                    <p>{statName}</p>
-                                    <p>{statValue}</p>
+                        weaponStatsInfo.magazineStats.map((stat: WeaponStatInfo) => (
+                                <div className="flex justify-between" key={stat.hash}>
+                                    <p>{stat.name}</p>
+                                    <p>{stat.value}</p>
                                 </div>
                             )
-                        })
+                        )
                     )
                    } 
                 </div>

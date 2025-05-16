@@ -48,4 +48,3 @@ export type SavedRoll = {
 export type WishListFilterKey = "ammoType"
 
 export type WeaponWishList = Record<string, SavedRoll[]>;
-

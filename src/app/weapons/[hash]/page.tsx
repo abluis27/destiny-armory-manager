@@ -15,6 +15,8 @@ import React, { useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
 
 
+
+
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
   // in the other component
@@ -159,9 +161,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
         />
         <div className="min-h-200 flex justify-center items-start py-10 gap-17">
           <WeaponStats
-            weaponStatValues={weapon.stats}
-            weaponType={weapon.weaponType.name}
-            intrinsicPerk={weapon.perkPool?.[0]?.[0] ?? EMPTY_PERK}
+            weaponStatsInfo={weapon.stats}
           />
           <WeaponPerkSelector
             perkPool={weaponPerkPool ?? []}

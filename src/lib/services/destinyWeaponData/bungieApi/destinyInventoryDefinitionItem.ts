@@ -1,6 +1,6 @@
-import { WeaponPerkInfoFromApiSchema } from "@/app/types/zodSchemasForApi/WeaponPerkInfo";
+import { WeaponPerkInfoFromApiSchema } from "@/types/zodSchemasForApi/WeaponPerkInfo";
 import { baseUrlBungieApi } from "./commonValues";
-import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
+import { WeaponPerkInfo } from "@/types/zodSchemasForDatabase/weaponPerkInfo";
 
 const path = "/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/"
 

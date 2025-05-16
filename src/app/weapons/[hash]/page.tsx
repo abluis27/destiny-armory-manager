@@ -1,17 +1,19 @@
 "use client";
-import { WeaponDetailsProps } from "@/app/interfaces/weaponDetails/WeaponDetailsInterfaces";
-import { WeaponBasicInfo, SavedRoll } from "@/app/types/basicTypes";
-import { DestinyWeaponData } from "@/app/types/destinyWeaponData";
-import { WeaponPerkInfo } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo";
+
+import { EMPTY_PERK } from "@/components/weaponDetails/emptyPerk";
+import WeaponPerkSelector from "@/components/weaponDetails/perkSelectorComponents/weaponPerkSelector";
+import WeaponBasicInformation from "@/components/weaponDetails/WeaponBasicInformation";
+import WeaponDetailsHeader from "@/components/weaponDetails/weaponDetailsHeader";
+import WeaponStats from "@/components/weaponDetails/weaponStats/weaponStats";
+import { WeaponDetailsProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces";
 import useStorageState from "@/lib/services/localStorage/useStorageState";
-import React, { useState, useEffect } from "react";
-import { EMPTY_PERK } from "./(weaponDetailsComponents)/emptyPerk";
-import WeaponPerkSelector from "./(weaponDetailsComponents)/perkSelectorComponents/weaponPerkSelector";
-import WeaponBasicInformation from "./(weaponDetailsComponents)/WeaponBasicInformation";
-import WeaponDetailsHeader from "./(weaponDetailsComponents)/weaponDetailsHeader";
-import WeaponStats from "./(weaponDetailsComponents)/weaponStats/weaponStats";
 import { showAlert } from "@/lib/sweetAlert";
+import { WeaponBasicInfo, SavedRoll } from "@/types/basicTypes";
+import { DestinyWeaponData } from "@/types/destinyWeaponData";
+import { WeaponPerkInfo } from "@/types/zodSchemasForDatabase/weaponPerkInfo";
+import React, { useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
+
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display

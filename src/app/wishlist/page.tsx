@@ -1,11 +1,12 @@
 "use client"
-import { useEffect, useState } from "react";
-import { SavedRoll, WeaponWishList, WishListFilterKey } from "../types/basicTypes";
+import WislistFilterSelect from "@/components/wishlist/WishListFilterSelect";
+import WeaponWishListDisplay from "@/components/wishlist/WeaponWishListDisplay";
+import { getFilteredWeaponWishList } from "@/components/wishlist/weaponWishListUtils";
 import useStorageState from "@/lib/services/localStorage/useStorageState";
-import { getFilteredWeaponWishList } from "./(wishlistComponents)/weaponWishListUtils";
-import WeaponWishListDisplay from "./(wishlistComponents)/WeaponWishListDisplay";
-import WislistFilterSelect from "./(wishlistComponents)/WishListFilterSelect";
-import { showAlert, showConfirmationAlert } from "../../lib/sweetAlert";
+import { showConfirmationAlert, showAlert } from "@/lib/sweetAlert";
+import { SavedRoll, WishListFilterKey, WeaponWishList } from "@/types/basicTypes";
+import { useState, useEffect } from "react";
+
 
 export default function WishList() {
   const [isClient, setIsClient] = useState(false);

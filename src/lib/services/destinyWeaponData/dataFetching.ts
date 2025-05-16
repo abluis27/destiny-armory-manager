@@ -1,4 +1,4 @@
-import { DestinyDefinition, WeaponBasicData } from "@/app/types/basicTypes";
+import { DestinyDefinition, WeaponBasicData } from "@/types/basicTypes";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 

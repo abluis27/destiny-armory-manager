@@ -1,6 +1,6 @@
 "use client"
-import Footer from "./(generalComponents)/footer.";
-import Header from "./(generalComponents)/header";
+import Footer from "../components/general/footer.";
+import Header from "../components/general/header";
 import "./globals.css"
 import { usePathname } from 'next/navigation';
 

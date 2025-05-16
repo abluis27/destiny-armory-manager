@@ -1,6 +1,6 @@
-import { Sockets, SocketEntry } from "@/app/types/zodSchemasForDatabase/weaponCoreInfo"
-import { WeaponPerkInfo, WeaponPerkInfoSchema } from "@/app/types/zodSchemasForDatabase/weaponPerkInfo"
-import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "@/app/types/zodSchemasForDatabase/weaponPlugSet"
+import { Sockets, SocketEntry } from "@/types/zodSchemasForDatabase/weaponCoreInfo"
+import { WeaponPerkInfo, WeaponPerkInfoSchema } from "@/types/zodSchemasForDatabase/weaponPerkInfo"
+import { WeaponPerkPoolHashes, WeaponPerkPoolHashesSchema } from "@/types/zodSchemasForDatabase/weaponPlugSet"
 import { toSignedInt32 } from "@/lib/utils"
 import { fetchWeaponPerkInfoById, fetchWeaponPerkPooHasheslById } from "./dataFetching"
 

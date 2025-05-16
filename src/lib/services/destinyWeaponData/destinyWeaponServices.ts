@@ -1,7 +1,7 @@
-import { DestinyDefinition } from "@/app/types/basicTypes";
-import { DestinyWeaponData } from "@/app/types/destinyWeaponData";
-import { WeaponCoreInfo, WeaponCoreInfoWithoutIdSchema } from "@/app/types/zodSchemasForDatabase/weaponCoreInfo";
-import { WeaponPreviewInfo } from "@/app/types/zodSchemasForDatabase/weaponPreviewInfo";
+import { DestinyDefinition } from "@/types/basicTypes";
+import { DestinyWeaponData } from "@/types/destinyWeaponData";
+import { WeaponCoreInfo, WeaponCoreInfoWithoutIdSchema } from "@/types/zodSchemasForDatabase/weaponCoreInfo";
+import { WeaponPreviewInfo } from "@/types/zodSchemasForDatabase/weaponPreviewInfo";
 import { toSignedInt32 } from "@/lib/utils";
 import { fetchWeaponCoreInfoByName, fetchWeaponCoreInfoById } from "./dataFetching";
 import { getWeaponDamageTypeById, getWeaponAmmoTypeById, getWeaponRarityById, getWeaponTypeById } from "./weaponDetailsServices";

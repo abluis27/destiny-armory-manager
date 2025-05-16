@@ -16,6 +16,7 @@ export const GET = async (req: NextRequest) => {
 
     try {
         const results = await getDestinyWeaponsPreviewDataByName(weaponName)
+        
         if(results.length <= 0) {
         return NextResponse.json(
             {

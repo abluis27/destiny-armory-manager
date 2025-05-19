@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bottom-0 mt-20 bg-medium-dark pt-5 pb-10 px-15 
         border-t-1 border-light-medium
-        flex items-center justify-between">
+        flex flex-col gap-5 sm:flex-row items-center justify-between">
             <div className="flex flex-col gap-2">
                 <p>Destiny Armory Manager</p>
                 <p>Made with <span>❤</span> by Luis</p>

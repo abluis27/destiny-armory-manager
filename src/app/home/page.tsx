@@ -3,12 +3,13 @@ import Image from "next/image";
 
 export default function Home() {
 return (
-    <div className="flex flex-col justify-center items-center py-10">
-        <div className="w-340 flex flex-col gap-10">
+    <div className="flex flex-col justify-center items-center py-10 px-5">
+        <div className="xl:w-300 2xl:w-340
+        flex flex-col gap-10">
             {/* Introduction */}
             <div className="  bg-medium-dark
             flex justify-center items-center gap-3 rounded-md">
-                    {/* Img with message */}
+                {/* Img with message */}
                 <div className="flex flex-col items-center gap-4 py-5 px-5">
                         <div  className="flex flex-col items-center">
                             <Link href="/home">
@@ -19,7 +20,7 @@ return (
                                 height={120}
                                 />
                             </Link>
-                            <p className="text-2xl hidden lg:block mt-4 font-semibold"
+                            <p className="text-2xl mt-4 font-semibold"
                             >Destiny Armory Manager (D.A.M)</p>
                         </div>
                         <div className="flex flex-col text-start gap-1">
@@ -33,7 +34,7 @@ return (
                         </div>
                     </div>
                     {/* Armory img */}
-                    <div className="w-full h-full relative">
+                    <div className="hidden xl:block w-full h-full relative">
                         <Image
                             src="/icons/home-page-armory.jpg"
                             alt="Icon of the page"

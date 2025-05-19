@@ -69,14 +69,14 @@ const SearchModal = ({ setIsOpen }: SearchModalProps) => {
     // Semi transparent background
     <div
     className="bg-black/75
-      inset-0 z-100 fixed overflow-y-auto
+      inset-0 z-100 fixed top-15 overflow-y-auto
       sm:flex sm:items-center sm:justify-center sm:bg-opacity-50"
       onClick={() => setIsOpen(false)}
     >
       {/* Modal */}
       <div
-        className="bg-medium-dark py-4 rounded-lg border-1 border-light-medium
-        inset-0 h-screen
+        className="bg-medium-dark py-4 sm:rounded-lg border-1 border-light-medium
+        h-screen
         sm:w-170 sm:h-130"
         onClick={(e) => e.stopPropagation()}
       >

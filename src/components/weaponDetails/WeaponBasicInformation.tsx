@@ -1,27 +1,43 @@
 import { WeaponBasicInformationProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces"
 import { bungieBaseUrl } from "@/lib/utils"
+import Image from 'next/image'
 
-const WeaponBasicInformation = ({ weaponBasicInformation }: WeaponBasicInformationProps) => {
+const WeaponBasicInformation = ({ 
+    weaponBasicInformation,
+    className
+}: WeaponBasicInformationProps) => {
+    const screenshotDimensions = 400
+    const iconDimensions = 50
+    const intrinsicPerkIconDimension = 70
+
     return (
         // Container
-        <div className="h-full flex flex-col 
-        justify-center items-center gap-7 border-l-1 px-15 pb-15">
+        <div className={`h-full flex flex-col 
+        justify-center items-center gap-7 2xl:border-l-1 2xl:border-off-white 
+        px-15 lg:pb-15 ${className}`}>
             {/* Weapon image */}
             <div>
-                <img
-                    src = {`${bungieBaseUrl}${weaponBasicInformation.screenshot}`}
+                <Image
+                    src={`${bungieBaseUrl}${weaponBasicInformation.screenshot}`} 
+                    width={screenshotDimensions}
+                    height={screenshotDimensions}
+                    alt="An ingame screenshot of the weapon"
                     className="max-w-90 rounded-md"
                 />
             </div>
             {/* Actual basic info */}
-            <div className="flex flex-col gap-3 bg-dark p-5 border-1 border-medium rounded-sm max-w-120">
+            <div className="min-w-100 flex flex-col gap-3 bg-dark p-5 
+            border-1 border-medium rounded-sm max-w-120">
                 {/* Quote */}
                 <p className="italic">{weaponBasicInformation.flavorText}</p>
                 {/* Weapon element */}
                 <div className="flex items-center gap-3">
                     <div className="max-w-7 px-1">
-                        <img
-                            src={`${bungieBaseUrl}${weaponBasicInformation.damageType.icon}`}
+                        <Image
+                            src = {`${bungieBaseUrl}${weaponBasicInformation.damageType.icon}`}
+                            width={iconDimensions}
+                            height={iconDimensions}
+                            alt={"Weapon damage element icon"}
                         />
                     </div>
                     <p>{weaponBasicInformation.damageType.name}</p>
@@ -29,8 +45,11 @@ const WeaponBasicInformation = ({ weaponBasicInformation }: WeaponBasicInformati
                 {/* Weapon ammo type */}
                 <div className="flex items-center gap-3">
                     <div className="max-w-7">
-                        <img
-                            src={`${bungieBaseUrl}${weaponBasicInformation.ammoType.icon}`}
+                        <Image
+                            src = {`${bungieBaseUrl}${weaponBasicInformation.ammoType.icon}`}
+                            width={iconDimensions}
+                            height={iconDimensions}
+                            alt={"Weapon ammo type icon"}
                         />
                     </div>
                     <p>{weaponBasicInformation.ammoType.name}</p>
@@ -39,8 +58,11 @@ const WeaponBasicInformation = ({ weaponBasicInformation }: WeaponBasicInformati
                 {
                     <div className="flex border-t-1 border-off-white py-3 gap-3">
                         <div className="max-w-15">
-                            <img
-                                src={`${bungieBaseUrl}${weaponBasicInformation.intrinsictPerk.displayProperties.icon}`}
+                            <Image
+                                src = {`${bungieBaseUrl}${weaponBasicInformation.intrinsictPerk.displayProperties.icon}`}
+                                width={intrinsicPerkIconDimension}
+                                height={intrinsicPerkIconDimension}
+                                alt={"Weapon intrinsic perk icon"}
                             />
                         </div>
                         <div>

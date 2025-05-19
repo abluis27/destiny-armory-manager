@@ -1,9 +1,10 @@
 import WeaponIcon from "@/components/general/WeaponIcon"
 import { WeaponDetailsHeaderProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces"
+import SaveRollButton from "./SaveRollButton"
 
 const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
     return (
-      <div className="bg-medium-dark py-2 px-3 flex items-center justify-between
+      <div className="bg-medium-dark p-3 flex items-center justify-between
       lg:px-10 lg:py-3
       ">
         {/* Weapon info */}
@@ -11,7 +12,7 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
           <WeaponIcon
             icon={weapon.displayProperties.icon}
             iconWatermark={weapon.iconWatermark}
-            className={"w-15 border-1 border-medium-light"}
+            className={"border-1 border-medium-light"}
           />
           <div>
             <p className="text-lg uppercase">{weapon.displayProperties.name}</p>
@@ -20,12 +21,11 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
         </div>
 
         {/* Save roll button */}
-        <div  className="px-15">
-          <button className="bg-medium py-2 px-5 rounded-lg border-2
-           border-light-medium cursor-pointer
-           transition duration-300 hover:bg-blue-500"
-           onClick={() => onSaved()}
-          >+ Save roll</button>
+        <div className="px-15">
+          <SaveRollButton
+            onSaved={onSaved}
+            className="hidden md:block"
+          />
         </div>
       </div>
     )

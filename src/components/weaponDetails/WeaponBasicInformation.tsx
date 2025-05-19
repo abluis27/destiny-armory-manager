@@ -9,7 +9,7 @@ const WeaponBasicInformation = ({
         // Container
         <div className={`h-full flex flex-col 
         justify-center items-center gap-7 md:border-l-1 md:border-off-white 
-        px-15 pb-15 ${className}`}>
+        px-15 md:pb-15 ${className}`}>
             {/* Weapon image */}
             <div>
                 <img

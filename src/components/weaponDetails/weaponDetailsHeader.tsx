@@ -21,7 +21,7 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
         </div>
 
         {/* Save roll button */}
-        <div  className="px-15">
+        <div className="px-15">
           <SaveRollButton
             onSaved={onSaved}
             className="hidden md:block"

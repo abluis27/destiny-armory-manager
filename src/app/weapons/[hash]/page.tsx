@@ -2,6 +2,7 @@
 
 import { EMPTY_PERK } from "@/components/weaponDetails/emptyPerk";
 import WeaponPerkSelector from "@/components/weaponDetails/perkSelectorComponents/weaponPerkSelector";
+import SaveRollButton from "@/components/weaponDetails/SaveRollButton";
 import WeaponBasicInformation from "@/components/weaponDetails/WeaponBasicInformation";
 import WeaponDetailsHeader from "@/components/weaponDetails/weaponDetailsHeader";
 import WeaponStats from "@/components/weaponDetails/weaponStats/weaponStats";
@@ -160,8 +161,8 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
           onSaved={onCurrentRollSaved}
         />
         <div className="min-h-200 flex flex-col lg:flex-row 
-        justify-center items-center md:items-start
-        py-10 gap-17">
+        justify-center items-center lg:items-start flex-wrap
+        py-10 gap-10 lg:gap-17">
           <WeaponStats
             weaponStatsInfo={weapon.stats}
           />
@@ -172,7 +173,11 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
           />
           <WeaponBasicInformation
             weaponBasicInformation={getWeaponBasicInfo(weapon)}
-            className="order-first"
+            className="order-first 2xl:order-0"
+          />
+          <SaveRollButton
+            onSaved={onCurrentRollSaved}
+            className="md:hidden"
           />
         </div>
       </div>

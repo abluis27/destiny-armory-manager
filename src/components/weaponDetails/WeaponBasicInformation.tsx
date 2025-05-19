@@ -13,8 +13,8 @@ const WeaponBasicInformation = ({
     return (
         // Container
         <div className={`h-full flex flex-col 
-        justify-center items-center gap-7 md:border-l-1 md:border-off-white 
-        px-15 md:pb-15 ${className}`}>
+        justify-center items-center gap-7 2xl:border-l-1 2xl:border-off-white 
+        px-15 lg:pb-15 ${className}`}>
             {/* Weapon image */}
             <div>
                 <Image
@@ -26,7 +26,8 @@ const WeaponBasicInformation = ({
                 />
             </div>
             {/* Actual basic info */}
-            <div className="flex flex-col gap-3 bg-dark p-5 border-1 border-medium rounded-sm max-w-120">
+            <div className="min-w-100 flex flex-col gap-3 bg-dark p-5 
+            border-1 border-medium rounded-sm max-w-120">
                 {/* Quote */}
                 <p className="italic">{weaponBasicInformation.flavorText}</p>
                 {/* Weapon element */}

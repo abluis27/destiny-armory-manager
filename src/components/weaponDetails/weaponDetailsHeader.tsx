@@ -4,7 +4,7 @@ import SaveRollButton from "./SaveRollButton"
 
 const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
     return (
-      <div className="bg-medium-dark py-2 px-3 flex items-center justify-between
+      <div className="bg-medium-dark p-3 flex items-center justify-between
       lg:px-10 lg:py-3
       ">
         {/* Weapon info */}
@@ -24,6 +24,7 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
         <div  className="px-15">
           <SaveRollButton
             onSaved={onSaved}
+            className="hidden md:block"
           />
         </div>
       </div>

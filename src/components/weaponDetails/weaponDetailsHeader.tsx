@@ -1,5 +1,6 @@
 import WeaponIcon from "@/components/general/WeaponIcon"
 import { WeaponDetailsHeaderProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces"
+import SaveRollButton from "./SaveRollButton"
 
 const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
     return (
@@ -11,7 +12,7 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
           <WeaponIcon
             icon={weapon.displayProperties.icon}
             iconWatermark={weapon.iconWatermark}
-            className={"w-15 border-1 border-medium-light"}
+            className={"border-1 border-medium-light"}
           />
           <div>
             <p className="text-lg uppercase">{weapon.displayProperties.name}</p>
@@ -21,11 +22,9 @@ const WeaponDetailsHeader = ({ onSaved, weapon }: WeaponDetailsHeaderProps) => {
 
         {/* Save roll button */}
         <div  className="px-15">
-          <button className="bg-medium py-2 px-5 rounded-lg border-2
-           border-light-medium cursor-pointer
-           transition duration-300 hover:bg-blue-500"
-           onClick={() => onSaved()}
-          >+ Save roll</button>
+          <SaveRollButton
+            onSaved={onSaved}
+          />
         </div>
       </div>
     )

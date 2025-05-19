@@ -9,8 +9,13 @@ export interface WeaponDetailsHeaderProps extends WeaponDetailsComponentProps {
     onSaved: () => void
 }
 
+export interface SaveRollButtonProps {
+    onSaved: () => void
+}
+
 export interface WeaponBasicInformationProps {
     weaponBasicInformation: WeaponBasicInfo
+    className?: string
 }
 
 export interface WeaponDetailsComponentProps {

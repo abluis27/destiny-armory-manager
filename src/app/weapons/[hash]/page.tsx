@@ -159,7 +159,9 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
           weapon={weapon}
           onSaved={onCurrentRollSaved}
         />
-        <div className="min-h-200 flex justify-center items-start py-10 gap-17">
+        <div className="min-h-200 flex flex-col lg:flex-row 
+        justify-center items-center md:items-start
+        py-10 gap-17">
           <WeaponStats
             weaponStatsInfo={weapon.stats}
           />
@@ -168,8 +170,9 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
             selectedPerks={selectedPerks}
             setSelectedPerks={setSelectedPerks}
           />
-          <WeaponBasicInformation 
+          <WeaponBasicInformation
             weaponBasicInformation={getWeaponBasicInfo(weapon)}
+            className="order-first"
           />
         </div>
       </div>

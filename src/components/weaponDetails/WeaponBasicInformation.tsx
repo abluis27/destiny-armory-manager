@@ -1,11 +1,15 @@
 import { WeaponBasicInformationProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces"
 import { bungieBaseUrl } from "@/lib/utils"
 
-const WeaponBasicInformation = ({ weaponBasicInformation }: WeaponBasicInformationProps) => {
+const WeaponBasicInformation = ({ 
+    weaponBasicInformation,
+    className
+}: WeaponBasicInformationProps) => {
     return (
         // Container
-        <div className="h-full flex flex-col 
-        justify-center items-center gap-7 border-l-1 px-15 pb-15">
+        <div className={`h-full flex flex-col 
+        justify-center items-center gap-7 md:border-l-1 md:border-off-white 
+        px-15 pb-15 ${className}`}>
             {/* Weapon image */}
             <div>
                 <img

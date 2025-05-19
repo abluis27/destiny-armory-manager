@@ -1,8 +1,10 @@
+import { bungieBaseUrl } from "@/lib/utils";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  
+  images: {
+    domains: ["www.bungie.net"]
+  }
 };
 
 export default nextConfig;

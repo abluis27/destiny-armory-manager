@@ -1,10 +1,15 @@
 import { WeaponBasicInformationProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces"
 import { bungieBaseUrl } from "@/lib/utils"
+import Image from 'next/image'
 
 const WeaponBasicInformation = ({ 
     weaponBasicInformation,
     className
 }: WeaponBasicInformationProps) => {
+    const screenshotDimensions = 400
+    const iconDimensions = 50
+    const intrinsicPerkIconDimension = 70
+
     return (
         // Container
         <div className={`h-full flex flex-col 
@@ -12,8 +17,11 @@ const WeaponBasicInformation = ({
         px-15 md:pb-15 ${className}`}>
             {/* Weapon image */}
             <div>
-                <img
-                    src = {`${bungieBaseUrl}${weaponBasicInformation.screenshot}`}
+                <Image
+                    src={`${bungieBaseUrl}${weaponBasicInformation.screenshot}`} 
+                    width={screenshotDimensions}
+                    height={screenshotDimensions}
+                    alt="An ingame screenshot of the weapon"
                     className="max-w-90 rounded-md"
                 />
             </div>
@@ -24,8 +32,11 @@ const WeaponBasicInformation = ({
                 {/* Weapon element */}
                 <div className="flex items-center gap-3">
                     <div className="max-w-7 px-1">
-                        <img
-                            src={`${bungieBaseUrl}${weaponBasicInformation.damageType.icon}`}
+                        <Image
+                            src = {`${bungieBaseUrl}${weaponBasicInformation.damageType.icon}`}
+                            width={iconDimensions}
+                            height={iconDimensions}
+                            alt={"Weapon damage element icon"}
                         />
                     </div>
                     <p>{weaponBasicInformation.damageType.name}</p>
@@ -33,8 +44,11 @@ const WeaponBasicInformation = ({
                 {/* Weapon ammo type */}
                 <div className="flex items-center gap-3">
                     <div className="max-w-7">
-                        <img
-                            src={`${bungieBaseUrl}${weaponBasicInformation.ammoType.icon}`}
+                        <Image
+                            src = {`${bungieBaseUrl}${weaponBasicInformation.ammoType.icon}`}
+                            width={iconDimensions}
+                            height={iconDimensions}
+                            alt={"Weapon ammo type icon"}
                         />
                     </div>
                     <p>{weaponBasicInformation.ammoType.name}</p>
@@ -43,8 +57,11 @@ const WeaponBasicInformation = ({
                 {
                     <div className="flex border-t-1 border-off-white py-3 gap-3">
                         <div className="max-w-15">
-                            <img
-                                src={`${bungieBaseUrl}${weaponBasicInformation.intrinsictPerk.displayProperties.icon}`}
+                            <Image
+                                src = {`${bungieBaseUrl}${weaponBasicInformation.intrinsictPerk.displayProperties.icon}`}
+                                width={intrinsicPerkIconDimension}
+                                height={intrinsicPerkIconDimension}
+                                alt={"Weapon intrinsic perk icon"}
                             />
                         </div>
                         <div>

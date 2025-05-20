@@ -85,7 +85,7 @@ return (
                     </li>
                     <li>
                         <div className="flex flex-col gap-2">
-                            <p>Click "Save roll" to save the combination into the wishlist</p>
+                            <p>Click {"Save roll"} to save the combination into the wishlist</p>
                             <Image
                                 src="/images/tutorial-images/step-4.png"
                                 alt="Step 4 tutorial"

@@ -1,1 +1,0 @@
-export const baseUrlBungieApi = "https://www.bungie.net"

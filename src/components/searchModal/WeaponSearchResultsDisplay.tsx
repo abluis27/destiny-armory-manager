@@ -13,7 +13,7 @@ const WeaponSearchResultDisplay =  ({
 }: WeaponSearchResultDisplayProps) => {
     return (
         <div className="px-4 overflow-y-auto h-full
-        sm:overflow-y-scroll sm:max-h-[49vh]">
+        sm:overflow-y-scroll sm:max-h-[60vh] lg:max-h-[49vh]">
           {
              searchResults.length != 0 ? (
               <div className='flex flex-col'>

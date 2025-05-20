@@ -19,8 +19,7 @@ const Header = () => {
             alt="Icon of the page"
             width={32}
             height={32}
-            className='transition duration-300 hover:scale-120
-            bg-amber-600 md:bg-red-500 sm:bg-green-600 lg:bg-blue-600 xl:bg-purple-500 2xl:bg-green-500'
+            className='transition duration-300 hover:scale-120'
           />
         </Link>
         <p className="text-xl hidden lg:block">D.A.M</p>

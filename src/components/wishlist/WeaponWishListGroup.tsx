@@ -6,7 +6,7 @@ const WeaponWishListGroup = ({
     onClickDelete
 }: WeaponWishListGroupProps) => {
     return (
-        <div className="flex flex-wrap gap-10 py-4">
+        <div className="flex flex-col items-center md:flex-row md:flex-wrap gap-10 py-4">
             {
                 (
                     savedRolls.map(savedRoll => {

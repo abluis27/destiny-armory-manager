@@ -30,7 +30,7 @@ const WeaponWishListItem = ({
                     <WeaponIcon
                         icon={savedRoll.displayProperties.icon}
                         iconWatermark={savedRoll.iconWatermark}
-                        className="w-15 border-1 border-light-medium"
+                        className="border-1 border-light-medium"
                     />
                     <div className="flex items-center">
                         <p className="text-md">{savedRoll.displayProperties.name}</p>

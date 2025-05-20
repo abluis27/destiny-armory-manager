@@ -6,7 +6,7 @@ import useStorageState from "@/lib/services/localStorage/useStorageState";
 import { showConfirmationAlert, showAlert } from "@/lib/sweetAlert";
 import { SavedRoll, WishListFilterKey, WeaponWishList } from "@/types/basicTypes";
 import { useState, useEffect } from "react";
-
+import Image from 'next/image'
 
 export default function WishList() {
   const [isClient, setIsClient] = useState(false);
@@ -15,7 +15,7 @@ export default function WishList() {
   const [wishList, setWishList] = useState<WeaponWishList>({})
 
   useEffect(() => {
-    setIsClient(true) // Once the pageis in the client
+    setIsClient(true)
   }, [])
   
   useEffect(() => {
@@ -61,7 +61,9 @@ export default function WishList() {
   return (
     <div>
       <div className="py-5 px-7 flex justify-between">
-        <p className="text-2xl">Weapon Wishlist</p>
+        <div className="flex items-center justify-center">
+          <p className="text-xl md:text-2xl">Weapon Wishlist</p>
+        </div>
         <div className="flex gap-5">
           <WislistFilterSelect
             filterKey={filterKey}
@@ -72,7 +74,16 @@ export default function WishList() {
           transition duration-300
           hover:border-red-500"
           onClick={() => onClearWishlist()}
-          >Clear wishlist</button>
+          >
+            <p className="hidden md:block">Clear wishlist</p>
+            <Image
+              src={"/icons/clear-wishlist-icon.svg"}
+              width={20}
+              height={20}
+              alt="Button to clear the wishlist items"
+              className="md:hidden"
+            />
+          </button>
         </div>
       </div>
       {
@@ -88,5 +99,5 @@ export default function WishList() {
         )
       } 
     </div>
-  );
+  )
 }

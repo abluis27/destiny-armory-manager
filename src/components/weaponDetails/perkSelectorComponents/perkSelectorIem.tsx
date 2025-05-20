@@ -1,6 +1,7 @@
 import { PerkSelectorItemProps } from "@/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 import { bungieBaseUrl } from "@/lib/utils"
 import { useState } from "react";
+import Image from 'next/image'
 
 const PerkSelectorItem = ({
   perk,
@@ -24,11 +25,13 @@ const PerkSelectorItem = ({
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
             >
-                <img
+            <Image
                 src={`${bungieBaseUrl}${perkIcon}`}
+                width={50}
+                height={50}
                 alt={perk.displayProperties.name}
                 className="w-10 h-10 rounded-full object-cover"
-                />
+            />
             </div>
             {/* Tooltip below the image */}
             {hovered && (

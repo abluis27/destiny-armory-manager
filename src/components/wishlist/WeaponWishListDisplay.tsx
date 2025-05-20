@@ -6,7 +6,8 @@ const WeaponWishListDisplay = ({
   onClickDelete
 }: WeaponWishListProps) => {
   return (
-    <div className="min-h-200 flex flex-col px-20 divide-y-5 divide-light-medium">
+    <div className="min-h-200 flex flex-col items-center md:items-start md:px-20
+    divide-y-5 divide-light-medium gap-5">
       {Object.entries(wishList).map(([group, savedRolls]) => {
         if(savedRolls.length <= 0) return null
         return (

@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { WeaponPerkInfo } from "./zodSchemasForDatabase/weaponPerkInfo";
-import { WeaponDamageType } from "./zodSchemasForDatabase/weaponDamageType";
 import { DisplayProperties } from "./zodSchemasForDatabase/commonSchemas";
 
 // DestinyDefinition schema

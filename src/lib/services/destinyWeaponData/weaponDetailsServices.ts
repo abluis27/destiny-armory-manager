@@ -1,5 +1,5 @@
 import { WeaponBasicData} from "@/types/basicTypes";
-import { fetchWeaponAmmoTypeById, fetchWeaponDamageTypeById, fetchWeaponRarityById, fetchWeaponStatInfoById, fetchWeaponTypeById } from "./dataFetching";
+import { fetchWeaponAmmoTypeById, fetchWeaponDamageTypeById, fetchWeaponRarityById, fetchWeaponTypeById } from "./dataFetching";
 
 export const getWeaponTypeById = async (weaponCategories: number[]): Promise<WeaponBasicData> => {
     const weaponTypeId = weaponCategories.find(category => category >= 5)

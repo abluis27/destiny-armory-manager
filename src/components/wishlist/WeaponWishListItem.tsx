@@ -3,6 +3,7 @@ import { WeaponWishListItemProps } from "@/interfaces/WislistInterfaces";
 import WeaponIcon from "@/components/general/WeaponIcon";
 import PerkSelectorItem from "@/components/weaponDetails/perkSelectorComponents/perkSelectorIem";
 import { showConfirmationAlert, showAlert } from "@/lib/sweetAlert";
+import Image from 'next/image'
 
 const WeaponWishListItem = ({
     savedRoll,
@@ -37,11 +38,14 @@ const WeaponWishListItem = ({
                     </div>
                 </div>
                 <div className="w-10 b">
-                    <img 
-                        src="/icons/completed-icon.svg"
+                    <Image
+                        src={"/icons/completed-icon.svg"}
                         className="cursor-pointer bg-medium rounded-full
                         hover:bg-blue-500 transition duration-300"
+                        width={50}
+                        height={50}
                         onClick={() => onAdquieredRoll()}
+                        alt="Button to delete item from the wishlist"
                     />
                 </div>
             </div>

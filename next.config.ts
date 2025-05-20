@@ -1,9 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    domains: ["www.bungie.net"]
-  }
+images: {
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "www.bungie.net",
+      pathname: "/**",
+    },
+  ],
+}
+
 };
 
 export default nextConfig;

@@ -36,7 +36,7 @@ return (
                     {/* Armory img */}
                     <div className="hidden xl:block w-full h-full relative">
                         <Image
-                            src="/icons/home-page-armory.jpg"
+                            src="/images/home-page-armory.jpg"
                             alt="Icon of the page"
                             width={520}
                             height={520}

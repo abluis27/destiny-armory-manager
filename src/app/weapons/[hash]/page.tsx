@@ -3,7 +3,7 @@
 import { EMPTY_PERK } from "@/components/weaponDetails/emptyPerk";
 import WeaponPerkSelector from "@/components/weaponDetails/perkSelectorComponents/weaponPerkSelector";
 import SaveRollButton from "@/components/weaponDetails/SaveRollButton";
-import WeaponBasicInformation from "@/components/weaponDetails/WeaponBasicInformation";
+import WeaponBasicInformation from "@/components/weaponDetails/weaponBasicInformation/WeaponBasicInformation";
 import WeaponDetailsHeader from "@/components/weaponDetails/weaponDetailsHeader";
 import WeaponStats from "@/components/weaponDetails/weaponStats/weaponStats";
 import { WeaponDetailsProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces";
@@ -14,8 +14,7 @@ import { DestinyWeaponData } from "@/types/destinyWeaponData";
 import { WeaponPerkInfo } from "@/types/zodSchemasForDatabase/weaponPerkInfo";
 import React, { useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
-
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
@@ -97,6 +96,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
         "success"
       )
     }
+    console.log(weaponWishlist)
   }
 
   const isValidRoll = () => {
@@ -141,7 +141,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
 
   const getCurrentRoll = () => {
     return {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       weaponHash: weapon!.hash,
       displayProperties: weapon!.displayProperties,
       weaponType: weapon!.weaponType,

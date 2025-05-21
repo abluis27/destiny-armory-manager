@@ -1,14 +1,15 @@
 import { WeaponBasicInformationProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces"
 import { bungieBaseUrl } from "@/lib/utils"
 import Image from 'next/image'
+import WeaponScreenshot from "./WeaponScreenshot"
+
+const iconDimensions = 50
+const intrinsicPerkIconDimension = 70
 
 const WeaponBasicInformation = ({ 
     weaponBasicInformation,
     className
 }: WeaponBasicInformationProps) => {
-    const screenshotDimensions = 400
-    const iconDimensions = 50
-    const intrinsicPerkIconDimension = 70
 
     return (
         // Container
@@ -16,15 +17,10 @@ const WeaponBasicInformation = ({
         justify-center items-center gap-7 2xl:border-l-1 2xl:border-off-white 
         px-15 lg:pb-15 ${className}`}>
             {/* Weapon image */}
-            <div>
-                <Image
-                    src={`${bungieBaseUrl}${weaponBasicInformation.screenshot}`} 
-                    width={screenshotDimensions}
-                    height={screenshotDimensions}
-                    alt="An ingame screenshot of the weapon"
-                    className="max-w-90 rounded-md"
-                />
-            </div>
+            <WeaponScreenshot
+                screenshotUrl={`${bungieBaseUrl}${weaponBasicInformation.screenshot}`} 
+            />
+
             {/* Actual basic info */}
             <div className="min-w-100 flex flex-col gap-3 bg-dark p-5 
             border-1 border-medium rounded-sm max-w-120">

@@ -58,6 +58,8 @@ export default function WishList() {
    // Only render after client is ready
   if (!isClient) return null;
 
+  console.log(savedRolls)
+
   return (
     <div>
       <div className="py-5 px-7 flex justify-between">

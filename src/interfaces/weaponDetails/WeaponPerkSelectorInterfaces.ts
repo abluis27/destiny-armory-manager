@@ -16,4 +16,8 @@ export interface WeaponPerkSelectorProps {
   selectedPerks: (WeaponPerkInfo | null)[]
   setSelectedPerks: React.Dispatch<React.SetStateAction<WeaponPerkInfo[]>>
 }
-  
+
+export interface PerkImageProps {
+  alt: string
+  imageUrl: string
+}

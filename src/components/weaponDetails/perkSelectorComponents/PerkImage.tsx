@@ -9,7 +9,16 @@ const PerkImage = ({ imageUrl, alt }: PerkImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <>
+    <>      
+      {isLoading && (
+        <Image
+            src="/icons/loading-image.svg"
+            width={iconDimensions}
+            height={iconDimensions}
+            alt="Loading icon"
+            className="rounded-full object-cover"
+        />
+      )}
       {
         !error && (
             <Image
@@ -17,7 +26,8 @@ const PerkImage = ({ imageUrl, alt }: PerkImageProps) => {
                 width={iconDimensions}
                 height={iconDimensions}
                 alt={alt}
-                className={`rounded-md`}
+                className={`rounded-md ${isLoading ? 
+                    "opacity-0 absolute" : "opacity-100 relative"}`}
                 onLoad={() => setIsLoading(false)}
                 onError={() => {
                     console.log("pepe")
@@ -27,17 +37,6 @@ const PerkImage = ({ imageUrl, alt }: PerkImageProps) => {
             />
         )
       }
-
-      {isLoading && (
-        <Image
-          src="/icons/loading-image.svg"
-          width={iconDimensions}
-          height={iconDimensions}
-          alt="Loading icon"
-          className="rounded-full object-cover"
-        />
-      )}
-
       {error && (
         <Image
           src="/icons/error-loading-image.svg"

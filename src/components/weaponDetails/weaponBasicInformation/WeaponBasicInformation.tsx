@@ -18,7 +18,7 @@ const WeaponBasicInformation = ({
         px-15 lg:pb-15 ${className}`}>
             {/* Weapon image */}
             <WeaponScreenshot
-                screenshotUrl={`${bungieBaseUrl}${weaponBasicInformation.screenshot}`} 
+                screenshotUrl={`${bungieBaseUrl}${weaponBasicInformation.screenshot}`}
             />
 
             {/* Actual basic info */}

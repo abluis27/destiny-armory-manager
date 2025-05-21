@@ -77,7 +77,7 @@ const SearchModal = ({ setIsOpen }: SearchModalProps) => {
       <div
         className="bg-medium-dark py-4 sm:rounded-lg border-1 border-light-medium
         h-screen
-        sm:w-170 md:h-100 lg:h-130"
+        sm:w-170 md:h-100 lg:h-130 lg:max-h-[72vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Input*/}

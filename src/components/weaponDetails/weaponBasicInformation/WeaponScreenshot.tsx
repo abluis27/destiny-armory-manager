@@ -13,13 +13,20 @@ const WeaponScreenshot = ({ screenshotUrl }: WeaponScreenshotProps) => {
     return (
         <div>
             {
+                isLoading && (
+                    <ScreenshotPlaceholder>
+                        <p>Loading...</p>
+                    </ScreenshotPlaceholder>
+            )}
+            {
                 !error && (
                     <Image
                         src={screenshotUrl} 
                         width={screenshotDimensions}
                         height={screenshotDimensions}
                         alt="An ingame screenshot of the weapon"
-                        className="max-w-90 rounded-md"
+                        className={`rounded-md ${isLoading ? 
+                            "opacity-0 absolute" : "opacity-100 relative"}`}
                         onLoad={() => setIsLoading(false)}
                         onError={() => {
                             setError(true);
@@ -28,25 +35,19 @@ const WeaponScreenshot = ({ screenshotUrl }: WeaponScreenshotProps) => {
                     />
                 )
             }
-
-            {isLoading && (
-                <ScreenshotPlaceholder>
-                    <p>Loading...</p>
-                </ScreenshotPlaceholder>
-            )
-            }
-            {error && (
-                <ScreenshotPlaceholder>
-                    <div className='flex flex-col items-center gap-2'>
-                        <p>Oops! We couldn't load the image</p>
-                        <Image
-                            src="/icons/error-loading-image.svg"
-                            width={iconsDimensions}
-                            height={iconsDimensions}
-                            alt="Error loading image"
-                        />
-                    </div>
-                </ScreenshotPlaceholder>
+            {
+                error && (
+                    <ScreenshotPlaceholder>
+                        <div className='flex flex-col items-center gap-2'>
+                            <p>Oops! We couldn't load the image</p>
+                            <Image
+                                src="/icons/error-loading-image.svg"
+                                width={iconsDimensions}
+                                height={iconsDimensions}
+                                alt="Error loading image"
+                            />
+                        </div>
+                    </ScreenshotPlaceholder>
             )}
         </div>
     )

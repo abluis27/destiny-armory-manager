@@ -1,7 +1,7 @@
 import { PerkSelectorItemProps } from "@/interfaces/weaponDetails/WeaponPerkSelectorInterfaces";
 import { bungieBaseUrl } from "@/lib/utils"
 import { useState } from "react";
-import Image from 'next/image'
+import PerkImage from "./PerkImage";
 
 const PerkSelectorItem = ({
   perk,
@@ -12,7 +12,8 @@ const PerkSelectorItem = ({
     const perkIcon = perk.displayProperties.icon;
     const itemType = perk.itemTypeDisplayName;
 
-    if (!perkIcon || itemType.includes("Enhanced")) return null;
+    if (!perkIcon || itemType.includes("Enhanced")) return null
+
     return (
         <div className="relative inline-block" key={perk.hash}>
             <div
@@ -25,12 +26,9 @@ const PerkSelectorItem = ({
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
             >
-            <Image
-                src={`${bungieBaseUrl}${perkIcon}`}
-                width={50}
-                height={50}
+            <PerkImage
                 alt={perk.displayProperties.name}
-                className="w-10 h-10 rounded-full object-cover"
+                imageUrl={`${bungieBaseUrl}${perkIcon}`}
             />
             </div>
             {/* Tooltip below the image */}

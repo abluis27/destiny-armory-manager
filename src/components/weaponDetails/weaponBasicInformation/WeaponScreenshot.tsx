@@ -12,18 +12,23 @@ const WeaponScreenshot = ({ screenshotUrl }: WeaponScreenshotProps) => {
 
     return (
         <div>
-            <Image
-                src={screenshotUrl} 
-                width={screenshotDimensions}
-                height={screenshotDimensions}
-                alt="An ingame screenshot of the weapon"
-                className={`max-w-90 rounded-md ${error ? "hidden" : "block"}`}
-                onLoad={() => setIsLoading(false)}
-                onError={() => {
-                    setError(true);
-                    setIsLoading(false);
-                }}
-            />
+            {
+                !error && (
+                    <Image
+                        src={screenshotUrl} 
+                        width={screenshotDimensions}
+                        height={screenshotDimensions}
+                        alt="An ingame screenshot of the weapon"
+                        className="max-w-90 rounded-md"
+                        onLoad={() => setIsLoading(false)}
+                        onError={() => {
+                            setError(true);
+                            setIsLoading(false);
+                        }}
+                    />
+                )
+            }
+
             {isLoading && (
                 <ScreenshotPlaceholder>
                     <p>Loading...</p>

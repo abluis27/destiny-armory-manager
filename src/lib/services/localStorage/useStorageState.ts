@@ -5,19 +5,14 @@ function useStorageState<T>(
   key: string,
   initialValue: T
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
-  const [state, setState] = useState<T>(initialValue)
-
-  // Load from localStorage after the component mounts
-  useEffect(() => {
+  const [state, setState] = useState<T>(() => {
     if (typeof window !== "undefined") {
       const saved = LocalStorageService.get<T>(key)
-      if (saved !== null) {
-        setState(saved);
-      }
+      return saved !== null ? saved : initialValue
     }
-  }, [key])
+    return initialValue
+  });
 
-  // Save to localStorage on state change
   useEffect(() => {
     if (typeof window !== "undefined") {
       LocalStorageService.set(key, state)

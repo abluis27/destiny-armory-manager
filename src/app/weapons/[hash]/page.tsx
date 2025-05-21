@@ -14,6 +14,8 @@ import { DestinyWeaponData } from "@/types/destinyWeaponData";
 import { WeaponPerkInfo } from "@/types/zodSchemasForDatabase/weaponPerkInfo";
 import React, { useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display
@@ -94,6 +96,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
         "success"
       )
     }
+    console.log(weaponWishlist)
   }
 
   const isValidRoll = () => {
@@ -138,7 +141,7 @@ export default function WeaponDetails({ params }: WeaponDetailsProps) {
 
   const getCurrentRoll = () => {
     return {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       weaponHash: weapon!.hash,
       displayProperties: weapon!.displayProperties,
       weaponType: weapon!.weaponType,

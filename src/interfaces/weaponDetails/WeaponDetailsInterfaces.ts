@@ -22,3 +22,7 @@ export interface WeaponBasicInformationProps {
 export interface WeaponDetailsComponentProps {
     weapon: DestinyWeaponData
 }
+
+export interface WeaponScreenshotProps {
+    screenshotUrl: string
+}

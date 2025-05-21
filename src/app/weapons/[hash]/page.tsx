@@ -3,7 +3,7 @@
 import { EMPTY_PERK } from "@/components/weaponDetails/emptyPerk";
 import WeaponPerkSelector from "@/components/weaponDetails/perkSelectorComponents/weaponPerkSelector";
 import SaveRollButton from "@/components/weaponDetails/SaveRollButton";
-import WeaponBasicInformation from "@/components/weaponDetails/WeaponBasicInformation";
+import WeaponBasicInformation from "@/components/weaponDetails/weaponBasicInformation/WeaponBasicInformation";
 import WeaponDetailsHeader from "@/components/weaponDetails/weaponDetailsHeader";
 import WeaponStats from "@/components/weaponDetails/weaponStats/weaponStats";
 import { WeaponDetailsProps } from "@/interfaces/weaponDetails/WeaponDetailsInterfaces";
@@ -14,9 +14,6 @@ import { DestinyWeaponData } from "@/types/destinyWeaponData";
 import { WeaponPerkInfo } from "@/types/zodSchemasForDatabase/weaponPerkInfo";
 import React, { useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
-
-
-
 
 const filterWeaponPerkPool = (perkPool: WeaponPerkInfo[][]) => {
   // We filter out the intrinsic perk since is going to be display

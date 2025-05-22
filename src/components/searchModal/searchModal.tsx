@@ -69,15 +69,15 @@ const SearchModal = ({ setIsOpen }: SearchModalProps) => {
     // Semi transparent background
     <div
     className="bg-black/75
-      inset-0 z-100 fixed top-15 overflow-y-auto
+      inset-0 z-100 fixed overflow-y-auto top-15
       sm:flex sm:items-center sm:justify-center sm:bg-opacity-50"
       onClick={() => setIsOpen(false)}
     >
       {/* Modal */}
       <div
         className="bg-medium-dark py-4 sm:rounded-lg border-1 border-light-medium
-        h-screen
-        sm:w-170 md:h-100 lg:h-130 lg:max-h-[72vh]"
+        h-screen flex flex-col
+        sm:w-180 sm:h-130"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Input*/}
@@ -99,7 +99,6 @@ const SearchModal = ({ setIsOpen }: SearchModalProps) => {
               onClick={() => setIsOpen(false)}
           />
         </div>
-
         {/* Displaying the search results */}
         {
           searchError ? (

@@ -30,8 +30,8 @@ const WeaponIcon = ({ icon, iconWatermark, className }: WeaponIconProps) => {
               alt="Weapon icon"
               onLoad={() => setIsLoading(false)}
               onError={() => {
-                setError(true);
-                setIsLoading(false);
+                setError(true)
+                setIsLoading(false)
               }}
             />
             <Image

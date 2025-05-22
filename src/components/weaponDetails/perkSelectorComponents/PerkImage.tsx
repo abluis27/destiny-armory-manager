@@ -30,8 +30,8 @@ const PerkImage = ({ imageUrl, alt }: PerkImageProps) => {
                     "opacity-0 absolute" : "opacity-100 relative"}`}
                 onLoad={() => setIsLoading(false)}
                 onError={() => {
-                setError(true);
-                setIsLoading(false);
+                  setError(true);
+                  setIsLoading(false);
                 }}
             />
         )

@@ -39,7 +39,7 @@ const WeaponScreenshot = ({ screenshotUrl }: WeaponScreenshotProps) => {
                 error && (
                     <ScreenshotPlaceholder>
                         <div className='flex flex-col items-center gap-2'>
-                            <p>Oops! We couldn't load the image</p>
+                            <p>Oops! We couldn&apos;t load the image</p>
                             <Image
                                 src="/icons/error-loading-image.svg"
                                 width={iconsDimensions}

@@ -4,6 +4,7 @@ import WeaponIcon from "@/components/general/WeaponIcon";
 import PerkSelectorItem from "@/components/weaponDetails/perkSelectorComponents/perkSelectorIem";
 import { showConfirmationAlert, showAlert } from "@/lib/sweetAlert";
 import Image from 'next/image'
+import Link from "next/link";
 
 const WeaponWishListItem = ({
     savedRoll,
@@ -28,11 +29,13 @@ const WeaponWishListItem = ({
         >
             <div className="flex items-center justify-between pr-5">
                 <div className="flex gap-5 p-3">
-                    <WeaponIcon
-                        icon={savedRoll.displayProperties.icon}
-                        iconWatermark={savedRoll.iconWatermark}
-                        className="border-1 border-light-medium"
-                    />
+                    <Link href={`/weapons/${savedRoll.weaponHash}`}>
+                        <WeaponIcon
+                            icon={savedRoll.displayProperties.icon}
+                            iconWatermark={savedRoll.iconWatermark}
+                            className="border-2 border-light-medium hover:border-blue-500"
+                        />
+                    </Link>
                     <div className="flex items-center">
                         <p className="text-md">{savedRoll.displayProperties.name}</p>
                     </div>

@@ -1,8 +1,15 @@
 "use client"
-import Footer from "../components/general/footer.";
+import Footer from "../components/general/footer";
 import Header from "../components/general/header";
 import "./globals.css"
 import { usePathname } from 'next/navigation';
+import { Roboto } from 'next/font/google'
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-roboto',
+})
 
 export default function RootLayout({
   children,
@@ -11,9 +18,10 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const showQuote = pathname === '/home' || pathname === '/wishlist';
+  
 
   return (
-    <html lang="en">
+    <html lang="en" className={roboto.className}>
       <body className="overflow-y-auto">
         <Header/>
         {

@@ -11,6 +11,7 @@ const roboto = Roboto({
   variable: '--font-roboto',
 })
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,6 +23,10 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={roboto.className}>
+    <head>
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="alternate icon" href="/favicon.png" />
+    </head>
       <body className="overflow-y-auto">
         <Header/>
         {
